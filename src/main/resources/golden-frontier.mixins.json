@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "net.locallupo.mixin",
+	"package": "net.locallupo.goldenfrontier.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"ExampleMixin"

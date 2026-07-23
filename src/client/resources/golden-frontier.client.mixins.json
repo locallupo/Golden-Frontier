@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "net.locallupo.client.mixin",
+	"package": "net.locallupo.goldenfrontier.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
 		"ExampleClientMixin"

@@ -1,4 +1,4 @@
-package net.locallupo.client.mixin;
+package net.locallupo.goldenfrontier.client.mixin;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;

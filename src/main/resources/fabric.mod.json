@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.locallupo.GoldenFrontier"
+			"net.locallupo.goldenfrontier.GoldenFrontier"
 		],
 		"client": [
-			"net.locallupo.client.GoldenFrontierClient"
+			"net.locallupo.goldenfrontier.client.GoldenFrontierClient"
 		]
 	},
 	"mixins": [

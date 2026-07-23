@@ -1,4 +1,4 @@
-package net.locallupo.client;
+package net.locallupo.goldenfrontier.client;
 
 import net.fabricmc.api.ClientModInitializer;
 
