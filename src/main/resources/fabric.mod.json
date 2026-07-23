@@ -3,15 +3,15 @@
 	"id": "golden-frontier",
 	"version": "${version}",
 	"name": "Golden Frontier",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Wild West mod based on the American Gold Rush, made for the 2026 CurseForge Modjam",
 	"authors": [
-		"Me!"
+		"locallupo, BenMcAvoy"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/locallupo/Golden-Frontier"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/golden-frontier/icon.png",
 	"environment": "*",
 	"entrypoints": {
