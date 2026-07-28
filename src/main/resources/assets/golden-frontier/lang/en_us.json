@@ -1,0 +1,29 @@
+{
+  "item.golden-frontier.copper_chunk": "Copper Chunk",
+  "item.golden-frontier.copper_dust": "Copper Dust",
+  "item.golden-frontier.copper_flake": "Copper Flake",
+
+  "item.golden-frontier.iron_chunk": "Iron Chunk",
+  "item.golden-frontier.iron_dust": "Iron Dust",
+  "item.golden-frontier.iron_flake": "Iron Flake",
+
+  "item.golden-frontier.gold_chunk": "Gold Chunk",
+  "item.golden-frontier.gold_dust": "Gold Dust",
+  "item.golden-frontier.gold_flake": "Gold Flake",
+
+  "item.golden-frontier.silver_chunk": "Silver Chunk",
+  "item.golden-frontier.silver_dust": "Silver Dust",
+  "item.golden-frontier.silver_flake": "Silver Flake",
+  "item.golden-frontier.raw_silver": "Raw Silver",
+  "item.golden-frontier.silver_ingot": "Silver Ingot",
+  "item.golden-frontier.silver_nugget": "Silver Nugget",
+
+  "item.golden-frontier.pyrite_chunk": "Pyrite Chunk",
+  "item.golden-frontier.pyrite_dust": "Pyrite Dust",
+  "item.golden-frontier.pyrite_flake": "Pyrite Flake",
+  "item.golden-frontier.raw_pyrite": "Raw Pyrite",
+  "item.golden-frontier.pyrite_ingot": "Pyrite Ingot",
+  "item.golden-frontier.pyrite_nugget": "Pyrite Nugget",
+
+  "item.golden-frontier.quartz_shard": "Quartz Shard"
+}
