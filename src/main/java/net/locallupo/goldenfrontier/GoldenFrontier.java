@@ -2,6 +2,7 @@ package net.locallupo.goldenfrontier;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.items.ModItems;
 import net.minecraft.resources.Identifier;
 
@@ -16,6 +17,7 @@ public class GoldenFrontier implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Vote Golden Frontier for the 2026 CurseForge Modjam!");
 		ModItems.initialize();
+		ModBlocks.initialize();
 	}
 
 	public static Identifier id(String path) {
