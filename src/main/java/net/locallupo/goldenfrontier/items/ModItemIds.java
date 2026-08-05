@@ -51,4 +51,6 @@ public class ModItemIds {
     // OTHER ITEMS
 
     public static final ResourceKey<Item> QUARTZ_SHARD = create("quartz_shard");
+
+    public static final ResourceKey<Item> WIRE = create("wire");
 }

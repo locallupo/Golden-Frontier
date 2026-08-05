@@ -35,5 +35,9 @@
   "block.golden-frontier.silver_ore": "Silver Ore",
   "block.golden-frontier.deepslate_silver_ore": "Deepslate Silver Ore",
   "block.golden-frontier.silver_block": "Block of Silver",
-  "block.golden-frontier.raw_silver_block": "Block of Raw Silver"
+  "block.golden-frontier.raw_silver_block": "Block of Raw Silver",
+
+  "block.golden-frontier.detonator": "Detonator",
+  "block.golden-frontier.dynamite": "Dynamite",
+  "item.golden-frontier.wire": "Wire"
 }

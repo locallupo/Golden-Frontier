@@ -26,4 +26,9 @@ public class ModBlockItemIds {
     public static final BlockItemId DEEPSLATE_SILVER_ORE = create("deepslate_silver_ore");
     public static final BlockItemId SILVER_BLOCK = create("silver_block");
     public static final BlockItemId RAW_SILVER_BLOCK = create("raw_silver_block");
+
+    // UTILITY BLOCKS
+
+    public static final BlockItemId DETONATOR = create("detonator");
+    public static final BlockItemId DYNAMITE = create("dynamite");
 }

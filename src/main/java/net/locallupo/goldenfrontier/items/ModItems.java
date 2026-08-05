@@ -58,6 +58,7 @@ public class ModItems {
     // OTHER ITEMS
 
     public static final Item QUARTZ_SHARD = register(ModItemIds.QUARTZ_SHARD, Item::new, new Item.Properties());
+    public static final Item WIRE = register(ModItemIds.WIRE, WireItem::new, new Item.Properties());
 
 
 
@@ -90,5 +91,6 @@ public class ModItems {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_NUGGET));
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.QUARTZ_SHARD));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.WIRE));
     }
 }

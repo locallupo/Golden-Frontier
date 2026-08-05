@@ -87,6 +87,21 @@ public class ModBlocks {
     );
 
 
+    // UTILITY BLOCKS
+
+    public static final Block DETONATOR = register(
+            ModBlockItemIds.DETONATOR,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+    );
+
+    public static final Block DYNAMITE = register(
+            ModBlockItemIds.DYNAMITE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+    );
+
+
 
 
 
@@ -124,5 +139,14 @@ public class ModBlocks {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
             creativeTab.accept(ModBlocks.RAW_SILVER_BLOCK.asItem());
         });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.DETONATOR.asItem());
+        });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.DYNAMITE.asItem());
+        });
+
     }
 }
