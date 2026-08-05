@@ -1,4 +1,4 @@
 {
   "replace": false,
-  "values": ["golden-frontier:pyrite_ore","golden-frontier:deepslate_pyrite_ore","golden-frontier:pyrite_block","golden-frontier:raw_pyrite_block"]
+  "values": ["golden-frontier:sandstone_gold_ore","golden-frontier:pyrite_ore","golden-frontier:deepslate_pyrite_ore","golden-frontier:pyrite_block","golden-frontier:raw_pyrite_block"]
 }

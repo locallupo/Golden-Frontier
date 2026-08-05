@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"net.locallupo.goldenfrontier.client.GoldenFrontierClient"
+		],
+		"fabric-datagen": [
+			"net.locallupo.goldenfrontier.client.datagen.GoldenFrontierDataGenerator"
 		]
 	},
 	"mixins": [

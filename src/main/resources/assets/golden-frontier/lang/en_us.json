@@ -37,6 +37,11 @@
   "block.golden-frontier.silver_block": "Block of Silver",
   "block.golden-frontier.raw_silver_block": "Block of Raw Silver",
 
+  "block.golden-frontier.sandstone_coal_ore": "Sandstone Coal Ore",
+  "block.golden-frontier.sandstone_copper_ore": "Sandstone Copper Ore",
+  "block.golden-frontier.sandstone_iron_ore": "Sandstone Iron Ore",
+  "block.golden-frontier.sandstone_gold_ore": "Sandstone Gold Ore",
+
   "block.golden-frontier.detonator": "Detonator",
   "block.golden-frontier.dynamite": "Dynamite",
   "item.golden-frontier.wire": "Wire"

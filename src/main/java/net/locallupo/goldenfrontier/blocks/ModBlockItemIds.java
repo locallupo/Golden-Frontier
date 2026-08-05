@@ -13,6 +13,13 @@ public class ModBlockItemIds {
         return BlockItemId.create(id, id);
     }
 
+    // VANILLA BLOCK TYPES
+    public static final BlockItemId SANDSTONE_COAL_ORE = create("sandstone_coal_ore");
+    public static final BlockItemId SANDSTONE_COPPER_ORE = create("sandstone_copper_ore");
+    public static final BlockItemId SANDSTONE_IRON_ORE = create("sandstone_iron_ore");
+    public static final BlockItemId SANDSTONE_GOLD_ORE = create("sandstone_gold_ore");
+
+
     // PYRITE BLOCKS
 
     public static final BlockItemId PYRITE_ORE = create("pyrite_ore");

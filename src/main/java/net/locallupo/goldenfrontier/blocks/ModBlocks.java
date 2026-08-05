@@ -31,6 +31,32 @@ public class ModBlocks {
         return Registry.register(BuiltInRegistries.BLOCK, id, block);
     }
 
+    // VANILLA BLOCKS
+
+    public static final Block SANDSTONE_COAL_ORE = register(
+            ModBlockItemIds.SANDSTONE_COAL_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
+    public static final Block SANDSTONE_COPPER_ORE = register(
+            ModBlockItemIds.SANDSTONE_COPPER_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
+    public static final Block SANDSTONE_IRON_ORE = register(
+            ModBlockItemIds.SANDSTONE_IRON_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
+    public static final Block SANDSTONE_GOLD_ORE = register(
+            ModBlockItemIds.SANDSTONE_GOLD_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
 
     // PYRITE BLOCKS
 
@@ -107,6 +133,23 @@ public class ModBlocks {
 
 
     public static void initialize() {
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.SANDSTONE_COAL_ORE.asItem());
+        });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.SANDSTONE_COPPER_ORE.asItem());
+        });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.SANDSTONE_IRON_ORE.asItem());
+        });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.SANDSTONE_GOLD_ORE.asItem());
+        });
+
+
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
             creativeTab.accept(ModBlocks.PYRITE_ORE.asItem());
         });
