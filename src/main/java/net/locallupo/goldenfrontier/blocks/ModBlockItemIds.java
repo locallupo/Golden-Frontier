@@ -24,6 +24,8 @@ public class ModBlockItemIds {
 
     public static final BlockItemId PYRITE_ORE = create("pyrite_ore");
     public static final BlockItemId DEEPSLATE_PYRITE_ORE = create("deepslate_pyrite_ore");
+    public static final BlockItemId SANDSTONE_PYRITE_ORE = create("sandstone_pyrite_ore");
+    public static final BlockItemId RED_SANDSTONE_PYRITE_ORE = create("red_sandstone_pyrite_ore");
     public static final BlockItemId PYRITE_BLOCK = create("pyrite_block");
     public static final BlockItemId RAW_PYRITE_BLOCK = create("raw_pyrite_block");
 

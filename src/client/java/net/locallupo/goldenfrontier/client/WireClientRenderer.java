@@ -693,7 +693,7 @@ public final class WireClientRenderer {
         int skyLight = level.getBrightness(LightLayer.SKY, lightPos);
         int light = (blockLight << 4) | (skyLight << 20);
         consumer.addVertex(matrix, (float) position.x, (float) position.y, (float) position.z)
-                .setColor(0.48f * shade, 0.50f * shade, 0.52f * shade, 1.0f)
+                .setColor(0.23f * shade, 0.23f * shade, 0.23f * shade, 1.0f)
                 .setLight(light);
     }
 

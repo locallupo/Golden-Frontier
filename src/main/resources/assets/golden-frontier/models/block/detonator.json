@@ -1,6 +1,123 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "format_version": "1.21.11",
+  "parent": "detonator",
+  "texture_size": [32, 32],
   "textures": {
-    "all": "minecraft:block/stone"
-  }
+    "1": "golden-frontier:block/detonator",
+    "particle": "minecraft:block/spruce_planks"
+  },
+  "elements": [
+    {
+      "name": "Body",
+      "from": [4, 0, 4],
+      "to": [12, 9, 12],
+      "rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 3]},
+      "faces": {
+        "north": {"uv": [0, 0, 4, 4.5], "texture": "#1"},
+        "east": {"uv": [4, 0, 8, 4.5], "texture": "#1"},
+        "south": {"uv": [0, 4.5, 4, 9], "texture": "#1"},
+        "west": {"uv": [4, 4.5, 8, 9], "texture": "#1"},
+        "up": {"uv": [12, 4, 8, 0], "texture": "#1"},
+        "down": {"uv": [12, 4, 8, 8], "texture": "#1"}
+      }
+    },
+    {
+      "from": [5, 14, 7.5],
+      "to": [11, 15, 8.5],
+      "faces": {
+        "north": {"uv": [1, 9, 4, 9.5], "texture": "#1"},
+        "east": {"uv": [9, 9, 9.5, 9.5], "texture": "#1"},
+        "south": {"uv": [4, 9, 7, 9.5], "texture": "#1"},
+        "west": {"uv": [1, 9.5, 1.5, 10], "texture": "#1"},
+        "up": {"uv": [12, 8.5, 9, 8], "texture": "#1"},
+        "down": {"uv": [12, 8.5, 9, 9], "texture": "#1"}
+      }
+    },
+    {
+      "from": [7.5, 8, 7.5],
+      "to": [8.5, 14, 8.5],
+      "rotation": {"angle": 0, "axis": "y", "origin": [-0.5, 0, -0.5]},
+      "faces": {
+        "north": {"uv": [8, 8, 8.5, 11], "texture": "#1"},
+        "east": {"uv": [8.5, 8, 9, 11], "texture": "#1"},
+        "south": {"uv": [0, 9, 0.5, 12], "texture": "#1"},
+        "west": {"uv": [0.5, 9, 1, 12], "texture": "#1"},
+        "up": {"uv": [7.5, 9.5, 7, 9], "texture": "#1"},
+        "down": {"uv": [8, 9, 7.5, 9.5], "texture": "#1"}
+      }
+    },
+    {
+      "from": [5, 9, 5],
+      "to": [6, 10, 6],
+      "rotation": {"angle": 0, "axis": "y", "origin": [-2, 8, 4]},
+      "faces": {
+        "north": {"uv": [1.5, 9.5, 2, 10], "texture": "#1"},
+        "east": {"uv": [2, 9.5, 2.5, 10], "texture": "#1"},
+        "south": {"uv": [2.5, 9.5, 3, 10], "texture": "#1"},
+        "west": {"uv": [3, 9.5, 3.5, 10], "texture": "#1"},
+        "up": {"uv": [4, 10, 3.5, 9.5], "texture": "#1"},
+        "down": {"uv": [4.5, 9.5, 4, 10], "texture": "#1"}
+      }
+    },
+    {
+      "from": [10, 9, 5],
+      "to": [11, 10, 6],
+      "rotation": {"angle": 0, "axis": "y", "origin": [3, 8, 4]},
+      "faces": {
+        "north": {"uv": [4.5, 9.5, 5, 10], "texture": "#1"},
+        "east": {"uv": [5, 9.5, 5.5, 10], "texture": "#1"},
+        "south": {"uv": [5.5, 9.5, 6, 10], "texture": "#1"},
+        "west": {"uv": [6, 9.5, 6.5, 10], "texture": "#1"},
+        "up": {"uv": [7, 10, 6.5, 9.5], "texture": "#1"},
+        "down": {"uv": [7.5, 9.5, 7, 10], "texture": "#1"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [0, 0, -2],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "thirdperson_lefthand": {
+      "translation": [0, 0, -2],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "firstperson_righthand": {
+      "scale": [0.75, 0.75, 0.75]
+    },
+    "firstperson_lefthand": {
+      "scale": [0.75, 0.75, 0.75]
+    },
+    "ground": {
+      "translation": [0, 2, 0],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "gui": {
+      "rotation": [15, 165, 0],
+      "scale": [0.75, 0.75, 0.75]
+    },
+    "head": {
+      "translation": [0, 14.25, 0]
+    },
+    "on_shelf": {
+      "rotation": [0, 180, 0]
+    }
+  },
+  "groups": [
+    0,
+    {
+      "name": "Handle",
+      "origin": [0, 0, 0],
+      "scope": 0,
+      "color": 0,
+      "children": [1, 2]
+    },
+    {
+      "name": "Terminals",
+      "origin": [-2, 8, 4],
+      "scope": 0,
+      "color": 0,
+      "children": [3, 4]
+    }
+  ]
 }

@@ -1,11 +1,17 @@
 package net.locallupo.goldenfrontier.items;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.locallupo.goldenfrontier.GoldenFrontier;
+import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Function;
 
@@ -63,34 +69,53 @@ public class ModItems {
 
 
 
+
+
+    // CREATIVE TAB EVENTS (THIS GETS MESSY, TRY TO KEEP THEM ORGANISED)
+    // ADD ITEMS TO MOD TAB AND ANY OTHER TABS THEY WOULD FIT WELL IN
+
+
     public static void initialize() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.COPPER_CHUNK));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.COPPER_DUST));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.COPPER_FLAKE));
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.IRON_CHUNK));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.IRON_DUST));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.IRON_FLAKE));
+        // INGREDIENTS
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.GOLD_CHUNK));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.GOLD_DUST));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.GOLD_FLAKE));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
+                .register(entries -> {
+                    entries.accept(ModItems.COPPER_DUST);
+                    entries.accept(ModItems.COPPER_FLAKE);
+                    entries.accept(ModItems.COPPER_CHUNK);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.SILVER_CHUNK));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.SILVER_DUST));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.SILVER_FLAKE));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.RAW_SILVER));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.SILVER_INGOT));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.SILVER_NUGGET));
+                    entries.accept(ModItems.IRON_DUST);
+                    entries.accept(ModItems.IRON_FLAKE);
+                    entries.accept(ModItems.IRON_CHUNK);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_CHUNK));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_DUST));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_FLAKE));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.RAW_PYRITE));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_INGOT));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.PYRITE_NUGGET));
+                    entries.accept(ModItems.GOLD_DUST);
+                    entries.accept(ModItems.GOLD_FLAKE);
+                    entries.accept(ModItems.GOLD_CHUNK);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.QUARTZ_SHARD));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register((creativeTab) -> creativeTab.accept(ModItems.WIRE));
+                    entries.accept(ModItems.SILVER_DUST);
+                    entries.accept(ModItems.SILVER_FLAKE);
+                    entries.accept(ModItems.SILVER_CHUNK);
+                    entries.accept(ModItems.RAW_SILVER);
+                    entries.accept(ModItems.SILVER_INGOT);
+                    entries.accept(ModItems.SILVER_NUGGET);
+
+                    entries.accept(ModItems.PYRITE_DUST);
+                    entries.accept(ModItems.PYRITE_NUGGET);
+                    entries.accept(ModItems.PYRITE_CHUNK);
+                    entries.accept(ModItems.RAW_PYRITE);
+                    entries.accept(ModItems.PYRITE_INGOT);
+                    entries.accept(ModItems.PYRITE_NUGGET);
+
+                    entries.accept(ModItems.QUARTZ_SHARD);
+                });
+
+        // TOOLS
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
+                .register(entries -> {
+                    entries.accept(ModItems.WIRE);
+                });
+
     }
 }

@@ -1,4 +1,7 @@
 {
+  "itemGroup.golden_frontier": "Golden Frontier",
+
+
   "item.golden-frontier.copper_chunk": "Copper Chunk",
   "item.golden-frontier.copper_dust": "Copper Dust",
   "item.golden-frontier.copper_flake": "Copper Flake",
@@ -29,6 +32,8 @@
 
   "block.golden-frontier.pyrite_ore": "Pyrite Ore",
   "block.golden-frontier.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
+  "block.golden-frontier.sandstone_pyrite_ore": "Sandstone Pyrite Ore",
+  "block.golden-frontier.red_sandstone_pyrite_ore": "Red Sandstone Pyrite Ore",
   "block.golden-frontier.pyrite_block": "Block of Pyrite",
   "block.golden-frontier.raw_pyrite_block": "Block of Raw Pyrite",
 
@@ -44,5 +49,17 @@
 
   "block.golden-frontier.detonator": "Detonator",
   "block.golden-frontier.dynamite": "Dynamite",
-  "item.golden-frontier.wire": "Wire"
+  "item.golden-frontier.wire": "Wire",
+
+  "block.golden-frontier.red_painted_planks": "Red Painted Planks",
+  "block.golden-frontier.orange_painted_planks": "Orange Painted Planks",
+  "block.golden-frontier.yellow_painted_planks": "Yellow Painted Planks",
+  "block.golden-frontier.lime_painted_planks": "Lime Painted Planks",
+  "block.golden-frontier.green_painted_planks": "Green Painted Planks",
+  "block.golden-frontier.cyan_painted_planks": "Cyan Painted Planks",
+  "block.golden-frontier.light_blue_painted_planks": "Light Blue Painted Planks",
+  "block.golden-frontier.blue_painted_planks": "Blue Painted Planks",
+  "block.golden-frontier.purple_painted_planks": "Purple Painted Planks",
+  "block.golden-frontier.magenta_painted_planks": "Magenta Painted Planks",
+  "block.golden-frontier.pink_painted_planks": "Pink Painted Planks"
 }

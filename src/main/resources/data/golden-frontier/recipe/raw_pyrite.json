@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "golden-frontier:raw_pyrite_block"
+  },
+  "pattern": [
+    "#"
+  ],
+  "result": {
+    "count": 9,
+    "id": "golden-frontier:raw_pyrite"
+  }
+}

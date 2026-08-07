@@ -1,7 +1,20 @@
 {
   "variants": {
-    "": {
-      "model": "golden-frontier:block/detonator"
+    "facing=east": {
+      "model": "golden-frontier:block/detonator",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "golden-frontier:block/detonator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "golden-frontier:block/detonator",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "golden-frontier:block/detonator",
+      "y": 360
     }
   }
 }

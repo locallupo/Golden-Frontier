@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "golden-frontier:quartz_shard",
+    "golden-frontier:quartz_shard",
+    "golden-frontier:quartz_shard",
+    "golden-frontier:quartz_shard",
+    "golden-frontier:quartz_shard"
+  ],
+  "result": {
+    "id": "minecraft:quartz"
+  }
+}

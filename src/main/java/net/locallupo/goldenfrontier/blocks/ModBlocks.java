@@ -1,6 +1,7 @@
 package net.locallupo.goldenfrontier.blocks;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.locallupo.goldenfrontier.items.ModItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -72,6 +73,18 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)
     );
 
+    public static final Block SANDSTONE_PYRITE_ORE = register(
+            ModBlockItemIds.SANDSTONE_PYRITE_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
+    public static final Block RED_SANDSTONE_PYRITE_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_PYRITE_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
     public static final Block PYRITE_BLOCK = register(
             ModBlockItemIds.PYRITE_BLOCK,
             Block::new,
@@ -117,7 +130,7 @@ public class ModBlocks {
 
     public static final Block DETONATOR = register(
             ModBlockItemIds.DETONATOR,
-            Block::new,
+            DetonatorBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
     );
 
@@ -200,98 +213,78 @@ public class ModBlocks {
 
 
     public static void initialize() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SANDSTONE_COAL_ORE.asItem());
-        });
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SANDSTONE_COPPER_ORE.asItem());
-        });
+        // NATURAL BLOCKS
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SANDSTONE_IRON_ORE.asItem());
-        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS)
+                .register(entries -> {
+                    entries.accept(ModBlocks.SANDSTONE_COAL_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_COPPER_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_IRON_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_GOLD_ORE);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SANDSTONE_GOLD_ORE.asItem());
-        });
+                    entries.accept(ModBlocks.SILVER_ORE);
+                    entries.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
+                    entries.accept(ModBlocks.RAW_SILVER_BLOCK);
 
-
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.PYRITE_ORE.asItem());
-        });
-
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.DEEPSLATE_PYRITE_ORE.asItem());
-        });
-
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.PYRITE_BLOCK.asItem());
-        });
-
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.RAW_PYRITE_BLOCK.asItem());
-        });
+                    entries.accept(ModBlocks.PYRITE_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_PYRITE_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_PYRITE_ORE);
+                    entries.accept(ModBlocks.DEEPSLATE_PYRITE_ORE);
+                    entries.accept(ModBlocks.RAW_PYRITE_BLOCK);
+                });
 
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SILVER_ORE.asItem());
-        });
+        // BUILDING BLOCKS
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.DEEPSLATE_SILVER_ORE.asItem());
-        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS)
+                .register(entries -> {
+                    entries.accept(ModBlocks.SILVER_BLOCK);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.SILVER_BLOCK.asItem());
-        });
+                    entries.accept(ModBlocks.PYRITE_BLOCK);
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.RAW_SILVER_BLOCK.asItem());
-        });
+                    entries.accept(ModBlocks.RED_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.ORANGE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.YELLOW_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.LIME_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.GREEN_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.CYAN_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.BLUE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.PURPLE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.MAGENTA_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.PINK_PAINTED_PLANKS);
+                });
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.DETONATOR.asItem());
-        });
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.DYNAMITE.asItem());
-        });
 
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.RED_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.ORANGE_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.YELLOW_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.LIME_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.GREEN_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.CYAN_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.BLUE_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.PURPLE_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.MAGENTA_PAINTED_PLANKS.asItem());
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
-            creativeTab.accept(ModBlocks.PINK_PAINTED_PLANKS.asItem());
-        });
+        // FUNCTIONAL BLOCKS
 
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+                .register(entries -> {
+                    entries.accept(ModBlocks.DETONATOR);
+
+                    entries.accept(ModBlocks.DYNAMITE);
+                });
+
+
+
+        // COLOURED BLOCKS
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COLORED_BLOCKS)
+                .register(entries -> {
+                    entries.accept(ModBlocks.RED_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.ORANGE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.YELLOW_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.LIME_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.GREEN_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.CYAN_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.BLUE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.PURPLE_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.MAGENTA_PAINTED_PLANKS);
+                    entries.accept(ModBlocks.PINK_PAINTED_PLANKS);
+                });
 
     }
 }

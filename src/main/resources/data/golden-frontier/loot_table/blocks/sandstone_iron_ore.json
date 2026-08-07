@@ -39,7 +39,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:iron"
+              "name": "minecraft:raw_iron"
             }
           ]
         }

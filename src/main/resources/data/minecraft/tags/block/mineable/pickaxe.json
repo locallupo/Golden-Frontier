@@ -1,4 +1,4 @@
 {
   "replace": false,
-  "values": ["golden-frontier:sandstone_coal_ore","golden-frontier:sandstone_copper_ore","golden-frontier:sandstone_iron_ore","golden-frontier:sandstone_gold_ore","golden-frontier:pyrite_ore","golden-frontier:deepslate_pyrite_ore","golden-frontier:pyrite_block","golden-frontier:raw_pyrite_block","golden-frontier:silver_ore","golden-frontier:deepslate_silver_ore","golden-frontier:silver_block","golden-frontier:raw_silver_block"]
+  "values": ["golden-frontier:sandstone_coal_ore","golden-frontier:sandstone_copper_ore","golden-frontier:sandstone_iron_ore","golden-frontier:sandstone_gold_ore","golden-frontier:pyrite_ore","golden-frontier:deepslate_pyrite_ore","golden-frontier:sandstone_pyrite_ore","golden-frontier:red_sandstone_pyrite_ore","golden-frontier:pyrite_block","golden-frontier:raw_pyrite_block","golden-frontier:silver_ore","golden-frontier:deepslate_silver_ore","golden-frontier:silver_block","golden-frontier:raw_silver_block"]
 }

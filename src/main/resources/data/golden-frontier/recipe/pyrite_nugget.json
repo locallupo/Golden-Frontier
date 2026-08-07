@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": "golden-frontier:pyrite_ingot"
+  },
+  "pattern": [
+    "#"
+  ],
+  "result": {
+    "count": 9,
+    "id": "golden-frontier:pyrite_nugget"
+  }
+}
