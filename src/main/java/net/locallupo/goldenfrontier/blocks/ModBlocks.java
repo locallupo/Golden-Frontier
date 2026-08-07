@@ -127,6 +127,73 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
     );
 
+    // DECORATIVE BLOCKS
+
+    public static final Block RED_PAINTED_PLANKS = register(
+            ModBlockItemIds.RED_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block ORANGE_PAINTED_PLANKS = register(
+            ModBlockItemIds.ORANGE_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block YELLOW_PAINTED_PLANKS = register(
+            ModBlockItemIds.YELLOW_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block LIME_PAINTED_PLANKS = register(
+            ModBlockItemIds.LIME_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block GREEN_PAINTED_PLANKS = register(
+            ModBlockItemIds.GREEN_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block CYAN_PAINTED_PLANKS = register(
+            ModBlockItemIds.CYAN_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block LIGHT_BLUE_PAINTED_PLANKS = register(
+            ModBlockItemIds.LIGHT_BLUE_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block BLUE_PAINTED_PLANKS = register(
+            ModBlockItemIds.BLUE_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block PURPLE_PAINTED_PLANKS = register(
+            ModBlockItemIds.PURPLE_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block MAGENTA_PAINTED_PLANKS = register(
+            ModBlockItemIds.MAGENTA_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final Block PINK_PAINTED_PLANKS = register(
+            ModBlockItemIds.PINK_PAINTED_PLANKS,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
 
 
 
@@ -190,6 +257,41 @@ public class ModBlocks {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
             creativeTab.accept(ModBlocks.DYNAMITE.asItem());
         });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.RED_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.ORANGE_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.YELLOW_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.LIME_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.GREEN_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.CYAN_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.BLUE_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.PURPLE_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.MAGENTA_PAINTED_PLANKS.asItem());
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register((creativeTab) -> {
+            creativeTab.accept(ModBlocks.PINK_PAINTED_PLANKS.asItem());
+        });
+
 
     }
 }

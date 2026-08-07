@@ -38,4 +38,19 @@ public class ModBlockItemIds {
 
     public static final BlockItemId DETONATOR = create("detonator");
     public static final BlockItemId DYNAMITE = create("dynamite");
+
+    // DECORATIVE BLOCKS
+
+    public static final BlockItemId RED_PAINTED_PLANKS = create("red_painted_planks");
+    public static final BlockItemId ORANGE_PAINTED_PLANKS = create("orange_painted_planks");
+    public static final BlockItemId YELLOW_PAINTED_PLANKS = create("yellow_painted_planks");
+    public static final BlockItemId LIME_PAINTED_PLANKS = create("lime_painted_planks");
+    public static final BlockItemId GREEN_PAINTED_PLANKS = create("green_painted_planks");
+    public static final BlockItemId CYAN_PAINTED_PLANKS = create("cyan_painted_planks");
+    public static final BlockItemId LIGHT_BLUE_PAINTED_PLANKS = create("light_blue_painted_planks");
+    public static final BlockItemId BLUE_PAINTED_PLANKS = create("blue_painted_planks");
+    public static final BlockItemId PURPLE_PAINTED_PLANKS = create("purple_painted_planks");
+    public static final BlockItemId MAGENTA_PAINTED_PLANKS = create("magenta_painted_planks");
+    public static final BlockItemId PINK_PAINTED_PLANKS = create("pink_painted_planks");
+
 }
