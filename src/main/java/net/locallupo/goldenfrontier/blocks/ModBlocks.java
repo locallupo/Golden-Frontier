@@ -1,7 +1,6 @@
 package net.locallupo.goldenfrontier.blocks;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
-import net.locallupo.goldenfrontier.items.ModItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -11,7 +10,6 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Function;
