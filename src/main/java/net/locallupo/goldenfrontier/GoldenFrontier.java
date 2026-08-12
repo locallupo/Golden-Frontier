@@ -6,6 +6,7 @@ import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.items.ModItemGroup;
 import net.locallupo.goldenfrontier.items.ModItems;
 import net.locallupo.goldenfrontier.wire.WireNetworking;
+import net.locallupo.goldenfrontier.world.OreGeneration;
 import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ public class GoldenFrontier implements ModInitializer {
 		ModItemGroup.initialize();
 		ModItems.initialize();
 		ModBlocks.initialize();
+		OreGeneration.initialize();
 	}
 
 	public static Identifier id(String path) {
