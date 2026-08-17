@@ -117,5 +117,6 @@ public class ModItems {
                     entries.accept(ModItems.WIRE);
                 });
 
+
     }
 }

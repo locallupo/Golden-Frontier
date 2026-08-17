@@ -1,6 +1,7 @@
 package net.locallupo.goldenfrontier.blocks;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.locallupo.goldenfrontier.GoldenFrontier;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
@@ -142,68 +143,77 @@ public class ModBlocks {
 
     public static final Block RED_PAINTED_PLANKS = register(
             ModBlockItemIds.RED_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block ORANGE_PAINTED_PLANKS = register(
             ModBlockItemIds.ORANGE_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block YELLOW_PAINTED_PLANKS = register(
             ModBlockItemIds.YELLOW_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block LIME_PAINTED_PLANKS = register(
             ModBlockItemIds.LIME_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block GREEN_PAINTED_PLANKS = register(
             ModBlockItemIds.GREEN_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block CYAN_PAINTED_PLANKS = register(
             ModBlockItemIds.CYAN_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block LIGHT_BLUE_PAINTED_PLANKS = register(
             ModBlockItemIds.LIGHT_BLUE_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block BLUE_PAINTED_PLANKS = register(
             ModBlockItemIds.BLUE_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block PURPLE_PAINTED_PLANKS = register(
             ModBlockItemIds.PURPLE_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block MAGENTA_PAINTED_PLANKS = register(
             ModBlockItemIds.MAGENTA_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
 
     public static final Block PINK_PAINTED_PLANKS = register(
             ModBlockItemIds.PINK_PAINTED_PLANKS,
-            Block::new,
+            PaintedPlanksBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    );
+
+    public static final net.minecraft.world.level.block.entity.BlockEntityType<ColoredPlankBlockEntity> COLORED_PLANK_BLOCK_ENTITY = Registry.register(
+            BuiltInRegistries.BLOCK_ENTITY_TYPE,
+            GoldenFrontier.id("colored_plank"),
+            new net.minecraft.world.level.block.entity.BlockEntityType<>(ColoredPlankBlockEntity::new, java.util.Set.of(
+                    RED_PAINTED_PLANKS, ORANGE_PAINTED_PLANKS, YELLOW_PAINTED_PLANKS, LIME_PAINTED_PLANKS,
+                    GREEN_PAINTED_PLANKS, CYAN_PAINTED_PLANKS, LIGHT_BLUE_PAINTED_PLANKS, BLUE_PAINTED_PLANKS,
+                    PURPLE_PAINTED_PLANKS, MAGENTA_PAINTED_PLANKS, PINK_PAINTED_PLANKS))
     );
 
 

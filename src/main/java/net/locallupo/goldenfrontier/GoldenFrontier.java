@@ -3,9 +3,12 @@ package net.locallupo.goldenfrontier;
 import net.fabricmc.api.ModInitializer;
 
 import net.locallupo.goldenfrontier.blocks.ModBlocks;
+import net.locallupo.goldenfrontier.blocks.PaintedPlanksBlock;
+import net.locallupo.goldenfrontier.components.ModComponents;
 import net.locallupo.goldenfrontier.items.ModItemGroup;
 import net.locallupo.goldenfrontier.items.ModItems;
 import net.locallupo.goldenfrontier.wire.WireNetworking;
+import net.locallupo.goldenfrontier.crafting.ModRecipes;
 import net.locallupo.goldenfrontier.world.OreGeneration;
 import net.minecraft.resources.Identifier;
 
@@ -20,9 +23,12 @@ public class GoldenFrontier implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Vote Golden Frontier for the 2026 CurseForge Modjam!");
 		WireNetworking.initialize();
+		ModComponents.initialize();
 		ModItemGroup.initialize();
 		ModItems.initialize();
 		ModBlocks.initialize();
+		PaintedPlanksBlock.initialize();
+		ModRecipes.initialize();
 		OreGeneration.initialize();
 	}
 

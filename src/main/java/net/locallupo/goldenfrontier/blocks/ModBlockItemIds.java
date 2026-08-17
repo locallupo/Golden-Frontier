@@ -1,7 +1,6 @@
 package net.locallupo.goldenfrontier.blocks;
 
 import net.locallupo.goldenfrontier.GoldenFrontier;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
