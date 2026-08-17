@@ -53,4 +53,27 @@ public class ModItemIds {
     public static final ResourceKey<Item> QUARTZ_SHARD = create("quartz_shard");
 
     public static final ResourceKey<Item> WIRE = create("wire");
+
+    // COSMETIC ITEMS
+
+    public static final ResourceKey<Item> GAMBLER_HAT = create("gambler_hat");
+    public static final ResourceKey<Item> RED_GAMBLER_HAT = create("red_gambler_hat");
+    public static final ResourceKey<Item> ORANGE_GAMBLER_HAT = create("orange_gambler_hat");
+    public static final ResourceKey<Item> YELLOW_GAMBLER_HAT = create("yellow_gambler_hat");
+    public static final ResourceKey<Item> GREEN_GAMBLER_HAT = create("green_gambler_hat");
+    public static final ResourceKey<Item> CYAN_GAMBLER_HAT = create("cyan_gambler_hat");
+    public static final ResourceKey<Item> PURPLE_GAMBLER_HAT = create("purple_gambler_hat");
+    public static final ResourceKey<Item> MAGENTA_GAMBLER_HAT = create("magenta_gambler_hat");
+    public static final ResourceKey<Item> WHITE_GAMBLER_HAT = create("white_gambler_hat");
+    public static final ResourceKey<Item> BLACK_GAMBLER_HAT = create("black_gambler_hat");
+
+    public static final ResourceKey<Item> MASK = create("mask");
+    public static final ResourceKey<Item> RED_MASK = create("red_mask");
+    public static final ResourceKey<Item> ORANGE_MASK = create("orange_mask");
+    public static final ResourceKey<Item> YELLOW_MASK = create("yellow_mask");
+    public static final ResourceKey<Item> GREEN_MASK = create("green_mask");
+    public static final ResourceKey<Item> CYAN_MASK = create("cyan_mask");
+    public static final ResourceKey<Item> PURPLE_MASK = create("purple_mask");
+    public static final ResourceKey<Item> MAGENTA_MASK = create("magenta_mask");
+    public static final ResourceKey<Item> BLACK_MASK = create("black_mask");
 }

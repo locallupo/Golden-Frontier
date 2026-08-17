@@ -9,7 +9,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 
 public class ModItemGroup {
@@ -90,6 +89,27 @@ public class ModItemGroup {
                     entries.accept(ModItems.WIRE);
                     entries.accept(ModBlocks.DETONATOR);
                     entries.accept(ModBlocks.DYNAMITE);
+
+                    entries.accept(ModItems.GAMBLER_HAT);
+                    entries.accept(ModItems.RED_GAMBLER_HAT);
+                    entries.accept(ModItems.ORANGE_GAMBLER_HAT);
+                    entries.accept(ModItems.YELLOW_GAMBLER_HAT);
+                    entries.accept(ModItems.GREEN_GAMBLER_HAT);
+                    entries.accept(ModItems.CYAN_GAMBLER_HAT);
+                    entries.accept(ModItems.PURPLE_GAMBLER_HAT);
+                    entries.accept(ModItems.MAGENTA_GAMBLER_HAT);
+                    entries.accept(ModItems.WHITE_GAMBLER_HAT);
+                    entries.accept(ModItems.BLACK_GAMBLER_HAT);
+
+                    entries.accept(ModItems.MASK);
+                    entries.accept(ModItems.RED_MASK);
+                    entries.accept(ModItems.ORANGE_MASK);
+                    entries.accept(ModItems.YELLOW_MASK);
+                    entries.accept(ModItems.GREEN_MASK);
+                    entries.accept(ModItems.CYAN_MASK);
+                    entries.accept(ModItems.PURPLE_MASK);
+                    entries.accept(ModItems.MAGENTA_MASK);
+                    entries.accept(ModItems.BLACK_MASK);
                 });
     }
 }

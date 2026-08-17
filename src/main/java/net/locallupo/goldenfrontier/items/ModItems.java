@@ -66,6 +66,28 @@ public class ModItems {
     public static final Item QUARTZ_SHARD = register(ModItemIds.QUARTZ_SHARD, Item::new, new Item.Properties());
     public static final Item WIRE = register(ModItemIds.WIRE, WireItem::new, new Item.Properties());
 
+    // COSMETIC ITEMS
+
+    public static final Item GAMBLER_HAT = register(ModItemIds.GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item RED_GAMBLER_HAT = register(ModItemIds.RED_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item ORANGE_GAMBLER_HAT = register(ModItemIds.ORANGE_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item YELLOW_GAMBLER_HAT = register(ModItemIds.YELLOW_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item GREEN_GAMBLER_HAT = register(ModItemIds.GREEN_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item CYAN_GAMBLER_HAT = register(ModItemIds.CYAN_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item PURPLE_GAMBLER_HAT = register(ModItemIds.PURPLE_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item MAGENTA_GAMBLER_HAT = register(ModItemIds.MAGENTA_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item WHITE_GAMBLER_HAT = register(ModItemIds.WHITE_GAMBLER_HAT, HatItem::new, new Item.Properties());
+    public static final Item BLACK_GAMBLER_HAT = register(ModItemIds.BLACK_GAMBLER_HAT, HatItem::new, new Item.Properties());
+
+    public static final Item MASK = register(ModItemIds.MASK, HatItem::new, new Item.Properties());
+    public static final Item RED_MASK = register(ModItemIds.RED_MASK, HatItem::new, new Item.Properties());
+    public static final Item ORANGE_MASK = register(ModItemIds.ORANGE_MASK, HatItem::new, new Item.Properties());
+    public static final Item YELLOW_MASK = register(ModItemIds.YELLOW_MASK, HatItem::new, new Item.Properties());
+    public static final Item GREEN_MASK = register(ModItemIds.GREEN_MASK, HatItem::new, new Item.Properties());
+    public static final Item CYAN_MASK = register(ModItemIds.CYAN_MASK, HatItem::new, new Item.Properties());
+    public static final Item PURPLE_MASK = register(ModItemIds.PURPLE_MASK, HatItem::new, new Item.Properties());
+    public static final Item MAGENTA_MASK = register(ModItemIds.MAGENTA_MASK, HatItem::new, new Item.Properties());
+    public static final Item BLACK_MASK = register(ModItemIds.BLACK_MASK, HatItem::new, new Item.Properties());
 
 
 

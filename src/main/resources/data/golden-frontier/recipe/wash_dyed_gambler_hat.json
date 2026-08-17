@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "#golden-frontier:dyed_gambler_hats",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "golden-frontier:gambler_hat"
+  }
+}
