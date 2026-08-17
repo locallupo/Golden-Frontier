@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class WireSavedData extends SavedData {
     private static final SavedDataType<WireSavedData> TYPE = new SavedDataType<>(
@@ -53,6 +56,35 @@ public class WireSavedData extends SavedData {
             setDirty();
         }
         return changed;
+    }
+
+    /** Returns dynamite reachable from a detonator through the connected wire network. */
+    public List<BlockPos> connectedDynamite(ServerLevel level, BlockPos detonator) {
+        Set<BlockPos> visited = new HashSet<>();
+        Deque<BlockPos> pending = new ArrayDeque<>();
+        List<BlockPos> dynamite = new ArrayList<>();
+        pending.add(detonator);
+
+        while (!pending.isEmpty()) {
+            BlockPos current = pending.removeFirst();
+            if (!visited.add(current)) {
+                continue;
+            }
+
+            if (!current.equals(detonator) && level.getBlockState(current).is(ModBlocks.DYNAMITE)) {
+                dynamite.add(current.immutable());
+            }
+
+            for (WireConnection connection : connections) {
+                if (connection.first().equals(current)) {
+                    pending.addLast(connection.second());
+                } else if (connection.second().equals(current)) {
+                    pending.addLast(connection.first());
+                }
+            }
+        }
+
+        return dynamite;
     }
 
     public boolean pruneInvalid(ServerLevel level) {

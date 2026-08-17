@@ -9,6 +9,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.locallupo.goldenfrontier.wire.WireSavedData;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -83,6 +89,33 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
             CollisionContext context
     ) {
         return rotateShape(state);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            BlockHitResult hit
+    ) {
+        if (level.isClientSide()) {
+            return InteractionResult.SUCCESS;
+        }
+
+        ServerLevel serverLevel = (ServerLevel) level;
+        for (BlockPos dynamite : WireSavedData.get(serverLevel).connectedDynamite(serverLevel, pos)) {
+            serverLevel.explode(
+                    null,
+                    dynamite.getX() + 0.5D,
+                    dynamite.getY() + 0.5D,
+                    dynamite.getZ() + 0.5D,
+                    4.0F,
+                    Level.ExplosionInteraction.BLOCK
+            );
+        }
+
+        return InteractionResult.SUCCESS_SERVER;
     }
 
 
