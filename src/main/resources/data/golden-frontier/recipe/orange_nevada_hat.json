@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "#golden-frontier:nevada_hats_not_orange",
+    "minecraft:orange_dye"
+  ],
+  "result": {
+    "id": "golden-frontier:orange_nevada_hat"
+  }
+}

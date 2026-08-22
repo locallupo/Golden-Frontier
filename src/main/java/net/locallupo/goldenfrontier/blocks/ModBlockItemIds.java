@@ -18,6 +18,11 @@ public class ModBlockItemIds {
     public static final BlockItemId SANDSTONE_IRON_ORE = create("sandstone_iron_ore");
     public static final BlockItemId SANDSTONE_GOLD_ORE = create("sandstone_gold_ore");
 
+    public static final BlockItemId RED_SANDSTONE_COAL_ORE = create("red_sandstone_coal_ore");
+    public static final BlockItemId RED_SANDSTONE_COPPER_ORE = create("red_sandstone_copper_ore");
+    public static final BlockItemId RED_SANDSTONE_IRON_ORE = create("red_sandstone_iron_ore");
+    public static final BlockItemId RED_SANDSTONE_GOLD_ORE = create("red_sandstone_gold_ore");
+
 
     // PYRITE BLOCKS
 
@@ -31,6 +36,8 @@ public class ModBlockItemIds {
     // SILVER BLOCKS
 
     public static final BlockItemId SILVER_ORE = create("silver_ore");
+    public static final BlockItemId SANDSTONE_SILVER_ORE = create("sandstone_silver_ore");
+    public static final BlockItemId RED_SANDSTONE_SILVER_ORE = create("red_sandstone_silver_ore");
     public static final BlockItemId DEEPSLATE_SILVER_ORE = create("deepslate_silver_ore");
     public static final BlockItemId SILVER_BLOCK = create("silver_block");
     public static final BlockItemId RAW_SILVER_BLOCK = create("raw_silver_block");

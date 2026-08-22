@@ -43,7 +43,7 @@ public class ModItemIds {
 
     public static final ResourceKey<Item> PYRITE_CHUNK = create("pyrite_chunk");
     public static final ResourceKey<Item> PYRITE_DUST = create("pyrite_dust");
-    public static final ResourceKey<Item> PYRITE_FLAkE = create("pyrite_flake");
+    public static final ResourceKey<Item> PYRITE_FLAKE = create("pyrite_flake");
     public static final ResourceKey<Item> RAW_PYRITE = create("raw_pyrite");
     public static final ResourceKey<Item> PYRITE_INGOT = create("pyrite_ingot");
     public static final ResourceKey<Item> PYRITE_NUGGET = create("pyrite_nugget");
@@ -53,6 +53,8 @@ public class ModItemIds {
     public static final ResourceKey<Item> QUARTZ_SHARD = create("quartz_shard");
 
     public static final ResourceKey<Item> WIRE = create("wire");
+
+    public static final ResourceKey<Item> GOLD_PAN = create("gold_pan");
 
     // COSMETIC ITEMS
 
@@ -66,6 +68,28 @@ public class ModItemIds {
     public static final ResourceKey<Item> MAGENTA_GAMBLER_HAT = create("magenta_gambler_hat");
     public static final ResourceKey<Item> WHITE_GAMBLER_HAT = create("white_gambler_hat");
     public static final ResourceKey<Item> BLACK_GAMBLER_HAT = create("black_gambler_hat");
+
+    public static final ResourceKey<Item> CATTLEMAN_HAT = create("cattleman_hat");
+    public static final ResourceKey<Item> RED_CATTLEMAN_HAT = create("red_cattleman_hat");
+    public static final ResourceKey<Item> ORANGE_CATTLEMAN_HAT = create("orange_cattleman_hat");
+    public static final ResourceKey<Item> YELLOW_CATTLEMAN_HAT = create("yellow_cattleman_hat");
+    public static final ResourceKey<Item> GREEN_CATTLEMAN_HAT = create("green_cattleman_hat");
+    public static final ResourceKey<Item> CYAN_CATTLEMAN_HAT = create("cyan_cattleman_hat");
+    public static final ResourceKey<Item> PURPLE_CATTLEMAN_HAT = create("purple_cattleman_hat");
+    public static final ResourceKey<Item> MAGENTA_CATTLEMAN_HAT = create("magenta_cattleman_hat");
+    public static final ResourceKey<Item> WHITE_CATTLEMAN_HAT = create("white_cattleman_hat");
+    public static final ResourceKey<Item> BLACK_CATTLEMAN_HAT = create("black_cattleman_hat");
+
+    public static final ResourceKey<Item> NEVADA_HAT = create("nevada_hat");
+    public static final ResourceKey<Item> RED_NEVADA_HAT = create("red_nevada_hat");
+    public static final ResourceKey<Item> ORANGE_NEVADA_HAT = create("orange_nevada_hat");
+    public static final ResourceKey<Item> YELLOW_NEVADA_HAT = create("yellow_nevada_hat");
+    public static final ResourceKey<Item> GREEN_NEVADA_HAT = create("green_nevada_hat");
+    public static final ResourceKey<Item> CYAN_NEVADA_HAT = create("cyan_nevada_hat");
+    public static final ResourceKey<Item> PURPLE_NEVADA_HAT = create("purple_nevada_hat");
+    public static final ResourceKey<Item> MAGENTA_NEVADA_HAT = create("magenta_nevada_hat");
+    public static final ResourceKey<Item> WHITE_NEVADA_HAT = create("white_nevada_hat");
+    public static final ResourceKey<Item> BLACK_NEVADA_HAT = create("black_nevada_hat");
 
     public static final ResourceKey<Item> MASK = create("mask");
     public static final ResourceKey<Item> RED_MASK = create("red_mask");

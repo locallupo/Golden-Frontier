@@ -57,6 +57,30 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
     );
 
+    public static final Block RED_SANDSTONE_COAL_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_COAL_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
+    public static final Block RED_SANDSTONE_COPPER_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_COPPER_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
+    public static final Block RED_SANDSTONE_IRON_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_IRON_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
+    public static final Block RED_SANDSTONE_GOLD_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_GOLD_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
 
     // PYRITE BLOCKS
 
@@ -112,6 +136,18 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_IRON_ORE)
     );
 
+    public static final Block SANDSTONE_SILVER_ORE = register(
+            ModBlockItemIds.SANDSTONE_SILVER_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)
+    );
+
+    public static final Block RED_SANDSTONE_SILVER_ORE = register(
+            ModBlockItemIds.RED_SANDSTONE_SILVER_ORE,
+            Block::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)
+    );
+
     public static final Block SILVER_BLOCK = register(
             ModBlockItemIds.SILVER_BLOCK,
             Block::new,
@@ -130,13 +166,13 @@ public class ModBlocks {
     public static final Block DETONATOR = register(
             ModBlockItemIds.DETONATOR,
             DetonatorBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)
     );
 
     public static final Block DYNAMITE = register(
             ModBlockItemIds.DYNAMITE,
             Block::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            BlockBehaviour.Properties.ofFullCopy(Blocks.TNT)
     );
 
     // DECORATIVE BLOCKS
@@ -227,11 +263,17 @@ public class ModBlocks {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS)
                 .register(entries -> {
                     entries.accept(ModBlocks.SANDSTONE_COAL_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_COAL_ORE);
                     entries.accept(ModBlocks.SANDSTONE_COPPER_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_COPPER_ORE);
                     entries.accept(ModBlocks.SANDSTONE_IRON_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_IRON_ORE);
                     entries.accept(ModBlocks.SANDSTONE_GOLD_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_GOLD_ORE);
 
                     entries.accept(ModBlocks.SILVER_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_SILVER_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_SILVER_ORE);
                     entries.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
                     entries.accept(ModBlocks.RAW_SILVER_BLOCK);
 

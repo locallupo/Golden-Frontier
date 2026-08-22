@@ -41,6 +41,28 @@
   "item.golden-frontier.white_gambler_hat": "White Gambler Hat",
   "item.golden-frontier.black_gambler_hat": "Black Gambler Hat",
 
+  "item.golden-frontier.cattleman_hat": "Cattleman Hat",
+  "item.golden-frontier.red_cattleman_hat": "Red Cattleman Hat",
+  "item.golden-frontier.orange_cattleman_hat": "Orange Cattleman Hat",
+  "item.golden-frontier.yellow_cattleman_hat": "Yellow Cattleman Hat",
+  "item.golden-frontier.green_cattleman_hat": "Green Cattleman Hat",
+  "item.golden-frontier.cyan_cattleman_hat": "Cyan Cattleman Hat",
+  "item.golden-frontier.purple_cattleman_hat": "Purple Cattleman Hat",
+  "item.golden-frontier.magenta_cattleman_hat": "Magenta Cattleman Hat",
+  "item.golden-frontier.white_cattleman_hat": "White Cattleman Hat",
+  "item.golden-frontier.black_cattleman_hat": "Black Cattleman Hat",
+
+  "item.golden-frontier.nevada_hat": "Nevada Hat",
+  "item.golden-frontier.red_nevada_hat": "Red Nevada Hat",
+  "item.golden-frontier.orange_nevada_hat": "Orange Nevada Hat",
+  "item.golden-frontier.yellow_nevada_hat": "Yellow Nevada Hat",
+  "item.golden-frontier.green_nevada_hat": "Green Nevada Hat",
+  "item.golden-frontier.cyan_nevada_hat": "Cyan Nevada Hat",
+  "item.golden-frontier.purple_nevada_hat": "Purple Nevada Hat",
+  "item.golden-frontier.magenta_nevada_hat": "Magenta Nevada Hat",
+  "item.golden-frontier.white_nevada_hat": "White Nevada Hat",
+  "item.golden-frontier.black_nevada_hat": "Black Nevada Hat",
+
   "item.golden-frontier.mask": "Mask",
   "item.golden-frontier.red_mask": "Red Mask",
   "item.golden-frontier.orange_mask": "Orange Mask",
@@ -60,6 +82,8 @@
 
   "block.golden-frontier.silver_ore": "Silver Ore",
   "block.golden-frontier.deepslate_silver_ore": "Deepslate Silver Ore",
+  "block.golden-frontier.sandstone_silver_ore": "Sandstone Silver Ore",
+  "block.golden-frontier.red_sandstone_silver_ore": "Red Sandstone Silver Ore",
   "block.golden-frontier.silver_block": "Block of Silver",
   "block.golden-frontier.raw_silver_block": "Block of Raw Silver",
 
@@ -67,6 +91,11 @@
   "block.golden-frontier.sandstone_copper_ore": "Sandstone Copper Ore",
   "block.golden-frontier.sandstone_iron_ore": "Sandstone Iron Ore",
   "block.golden-frontier.sandstone_gold_ore": "Sandstone Gold Ore",
+
+  "block.golden-frontier.red_sandstone_coal_ore": "Red Sandstone Coal Ore",
+  "block.golden-frontier.red_sandstone_copper_ore": "Red Sandstone Copper Ore",
+  "block.golden-frontier.red_sandstone_iron_ore": "Red Sandstone Iron Ore",
+  "block.golden-frontier.red_sandstone_gold_ore": "Red Sandstone Gold Ore",
 
   "block.golden-frontier.detonator": "Detonator",
   "block.golden-frontier.dynamite": "Dynamite",

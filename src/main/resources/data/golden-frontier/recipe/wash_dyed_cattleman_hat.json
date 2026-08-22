@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "#golden-frontier:dyed_cattleman_hats",
+    "minecraft:water_bucket"
+  ],
+  "result": {
+    "id": "golden-frontier:cattleman_hat"
+  }
+}

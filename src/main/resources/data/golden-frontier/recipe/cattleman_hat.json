@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "L": "minecraft:leather",
+    "S": "minecraft:string",
+    "#": "golden-frontier:silver_nugget"
+  },
+  "pattern": [
+    "L#L",
+    "LSL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "golden-frontier:cattleman_hat"
+  }
+}

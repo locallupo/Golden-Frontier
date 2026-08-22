@@ -6,6 +6,7 @@ import net.locallupo.goldenfrontier.GoldenFrontier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -28,6 +29,26 @@ public final class OreGeneration {
                 BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES,
                 placedFeature("silver_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_pyrite_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_silver_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_pyrite_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_silver_ore")
         );
     }
 }

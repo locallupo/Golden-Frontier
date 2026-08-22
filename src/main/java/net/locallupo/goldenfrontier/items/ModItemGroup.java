@@ -32,21 +32,25 @@ public class ModItemGroup {
         CreativeModeTabEvents.modifyOutputEvent(GOLDEN_FRONTIER)
                 .register(entries -> {
                     entries.accept(ModBlocks.SANDSTONE_COAL_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_COAL_ORE);
 
                     entries.accept(ModItems.COPPER_DUST);
                     entries.accept(ModItems.COPPER_FLAKE);
                     entries.accept(ModItems.COPPER_CHUNK);
                     entries.accept(ModBlocks.SANDSTONE_COPPER_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_COPPER_ORE);
 
                     entries.accept(ModItems.IRON_DUST);
                     entries.accept(ModItems.IRON_FLAKE);
                     entries.accept(ModItems.IRON_CHUNK);
                     entries.accept(ModBlocks.SANDSTONE_IRON_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_IRON_ORE);
 
                     entries.accept(ModItems.GOLD_DUST);
                     entries.accept(ModItems.GOLD_FLAKE);
                     entries.accept(ModItems.GOLD_CHUNK);
                     entries.accept(ModBlocks.SANDSTONE_GOLD_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_GOLD_ORE);
 
                     entries.accept(ModItems.SILVER_DUST);
                     entries.accept(ModItems.SILVER_FLAKE);
@@ -55,6 +59,8 @@ public class ModItemGroup {
                     entries.accept(ModItems.SILVER_INGOT);
                     entries.accept(ModItems.SILVER_NUGGET);
                     entries.accept(ModBlocks.SILVER_ORE);
+                    entries.accept(ModBlocks.SANDSTONE_SILVER_ORE);
+                    entries.accept(ModBlocks.RED_SANDSTONE_SILVER_ORE);
                     entries.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
                     entries.accept(ModBlocks.RAW_SILVER_BLOCK);
                     entries.accept(ModBlocks.SILVER_BLOCK);
@@ -86,9 +92,22 @@ public class ModItemGroup {
                     entries.accept(ModBlocks.MAGENTA_PAINTED_PLANKS);
                     entries.accept(ModBlocks.PINK_PAINTED_PLANKS);
 
+                    entries.accept(ModItems.GOLD_PAN);
+
                     entries.accept(ModItems.WIRE);
                     entries.accept(ModBlocks.DETONATOR);
                     entries.accept(ModBlocks.DYNAMITE);
+
+                    entries.accept(ModItems.CATTLEMAN_HAT);
+                    entries.accept(ModItems.RED_CATTLEMAN_HAT);
+                    entries.accept(ModItems.ORANGE_CATTLEMAN_HAT);
+                    entries.accept(ModItems.YELLOW_CATTLEMAN_HAT);
+                    entries.accept(ModItems.GREEN_CATTLEMAN_HAT);
+                    entries.accept(ModItems.CYAN_CATTLEMAN_HAT);
+                    entries.accept(ModItems.PURPLE_CATTLEMAN_HAT);
+                    entries.accept(ModItems.MAGENTA_CATTLEMAN_HAT);
+                    entries.accept(ModItems.WHITE_CATTLEMAN_HAT);
+                    entries.accept(ModItems.BLACK_CATTLEMAN_HAT);
 
                     entries.accept(ModItems.GAMBLER_HAT);
                     entries.accept(ModItems.RED_GAMBLER_HAT);
@@ -100,6 +119,17 @@ public class ModItemGroup {
                     entries.accept(ModItems.MAGENTA_GAMBLER_HAT);
                     entries.accept(ModItems.WHITE_GAMBLER_HAT);
                     entries.accept(ModItems.BLACK_GAMBLER_HAT);
+
+                    entries.accept(ModItems.NEVADA_HAT);
+                    entries.accept(ModItems.RED_NEVADA_HAT);
+                    entries.accept(ModItems.ORANGE_NEVADA_HAT);
+                    entries.accept(ModItems.YELLOW_NEVADA_HAT);
+                    entries.accept(ModItems.GREEN_NEVADA_HAT);
+                    entries.accept(ModItems.CYAN_NEVADA_HAT);
+                    entries.accept(ModItems.PURPLE_NEVADA_HAT);
+                    entries.accept(ModItems.MAGENTA_NEVADA_HAT);
+                    entries.accept(ModItems.WHITE_NEVADA_HAT);
+                    entries.accept(ModItems.BLACK_NEVADA_HAT);
 
                     entries.accept(ModItems.MASK);
                     entries.accept(ModItems.RED_MASK);
