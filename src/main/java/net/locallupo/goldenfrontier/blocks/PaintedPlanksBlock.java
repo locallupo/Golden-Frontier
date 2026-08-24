@@ -101,7 +101,7 @@ public class PaintedPlanksBlock extends Block implements EntityBlock {
                 return InteractionResult.PASS;
             }
 
-            if (target.state.is(BlockTags.PLANKS) && dye != null) {
+            if (isSupportedSourcePlank(target.state) && dye != null) {
                 if (!level.isClientSide()) {
                     placeColored(level, target.pos, target.state, dye, held, player);
                 }
@@ -114,6 +114,10 @@ public class PaintedPlanksBlock extends Block implements EntityBlock {
     private static void add(DyeColor color, Block block) {
         BY_COLOR.put(color, block);
         COLORS.put(block, color);
+    }
+
+    private static boolean isSupportedSourcePlank(BlockState state) {
+        return state.is(BlockTags.PLANKS) && !state.is(Blocks.BAMBOO_PLANKS);
     }
 
     public static Block block(DyeColor color) {

@@ -19,7 +19,9 @@ public class ModBlocks {
     private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties){
         Block block = register(id.block(), blockFactory, properties);
 
-        BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item()));
+        BlockItem blockItem = block instanceof PaintedPlanksBlock
+                ? new PaintedPlankBlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item()))
+                : new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(id.item()));
         Registry.register(BuiltInRegistries.ITEM, id.item(), blockItem);
 
         return block;

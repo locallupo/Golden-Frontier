@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
@@ -76,6 +77,7 @@ public class DyedPlankRecipe implements CraftingRecipe {
     private static boolean isSourcePlank(ItemStack stack) {
         return !stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem
                 && blockItem.getBlock().defaultBlockState().is(BlockTags.PLANKS)
+                && blockItem.getBlock() != Blocks.BAMBOO_PLANKS
                 && PaintedPlanksBlock.color(blockItem.getBlock()) == null;
     }
 
