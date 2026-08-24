@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
@@ -22,8 +23,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import com.mojang.math.OctahedralGroup;
+import net.minecraft.util.RandomSource;
 
 public class DetonatorBlock extends HorizontalDirectionalBlock {
+    public static final BooleanProperty PRESSED = BooleanProperty.create("pressed");
+    private static final int DETONATION_DELAY_TICKS = 10;
 
     // Needed for directional blocks
     public static final MapCodec<DetonatorBlock> CODEC =
@@ -43,6 +47,14 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
             Block.box(10, 9, 5, 11, 10, 6)         // Right terminal
     );
 
+    private static final VoxelShape PRESSED_SHAPE = Shapes.or(
+            Block.box(4, 0, 4, 12, 9, 12),          // Body
+            Block.box(5, 10, 7.5, 11, 11, 8.5),     // Lowered handle top
+            Block.box(7.5, 4, 7.5, 8.5, 10, 8.5),   // Lowered handle stem
+            Block.box(5, 9, 5, 6, 10, 6),
+            Block.box(10, 9, 5, 11, 10, 6)
+    );
+
 
     private static final VoxelShape SHAPE_NORTH = SHAPE;
 
@@ -55,6 +67,13 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
     private static final VoxelShape SHAPE_WEST =
             Shapes.rotate(SHAPE, OctahedralGroup.ROT_90_Y_POS);
 
+    private static final VoxelShape PRESSED_SHAPE_EAST =
+            Shapes.rotate(PRESSED_SHAPE, OctahedralGroup.ROT_90_Y_NEG);
+    private static final VoxelShape PRESSED_SHAPE_SOUTH =
+            Shapes.rotate(PRESSED_SHAPE, OctahedralGroup.ROT_180_FACE_XZ);
+    private static final VoxelShape PRESSED_SHAPE_WEST =
+            Shapes.rotate(PRESSED_SHAPE, OctahedralGroup.ROT_90_Y_POS);
+
 
     public DetonatorBlock(Properties properties) {
         super(properties);
@@ -62,6 +81,7 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
         this.registerDefaultState(
                 this.stateDefinition.any()
                         .setValue(FACING, Direction.NORTH)
+                        .setValue(PRESSED, false)
         );
     }
 
@@ -70,7 +90,7 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
     protected void createBlockStateDefinition(
             StateDefinition.Builder<Block, BlockState> builder
     ) {
-        builder.add(FACING);
+        builder.add(FACING, PRESSED);
     }
 
 
@@ -107,6 +127,19 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
         }
 
         ServerLevel serverLevel = (ServerLevel) level;
+        if (state.getValue(PRESSED)) {
+            return InteractionResult.SUCCESS_SERVER;
+        }
+        serverLevel.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_CLIENTS);
+        serverLevel.scheduleTick(pos, this, DETONATION_DELAY_TICKS);
+        return InteractionResult.SUCCESS_SERVER;
+    }
+
+    @Override
+    protected void tick(BlockState state, ServerLevel serverLevel, BlockPos pos, RandomSource random) {
+        if (!state.is(this) || !state.getValue(PRESSED)) {
+            return;
+        }
         for (BlockPos dynamite : WireSavedData.get(serverLevel).connectedDynamite(serverLevel, pos)) {
             serverLevel.explode(
                     null,
@@ -117,8 +150,9 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
                     Level.ExplosionInteraction.BLOCK
             );
         }
-
-        return InteractionResult.SUCCESS_SERVER;
+        if (serverLevel.getBlockState(pos).is(this)) {
+            serverLevel.setBlock(pos, state.setValue(PRESSED, false), Block.UPDATE_CLIENTS);
+        }
     }
 
     /**
@@ -143,6 +177,14 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
 
 
     private static VoxelShape rotateShape(BlockState state) {
+        if (state.getValue(PRESSED)) {
+            return switch (state.getValue(FACING)) {
+                case EAST -> PRESSED_SHAPE_EAST;
+                case SOUTH -> PRESSED_SHAPE_SOUTH;
+                case WEST -> PRESSED_SHAPE_WEST;
+                default -> PRESSED_SHAPE;
+            };
+        }
         return switch (state.getValue(FACING)) {
             case EAST -> SHAPE_EAST;
             case SOUTH -> SHAPE_SOUTH;

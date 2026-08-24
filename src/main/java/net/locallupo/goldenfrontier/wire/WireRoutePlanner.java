@@ -19,6 +19,7 @@ import java.util.Set;
  */
 public final class WireRoutePlanner {
     public static final double CLEARANCE = 0.08;
+    private static final double LEDGE_FACE_CLEARANCE = 0.025;
     public static final int MAX_UNSUPPORTED_BRIDGE = 2;
     private static final int MAX_EXPANDED_NODES = 50_000;
     // Start beyond the former 16-block ceiling so the first successful route is
@@ -207,8 +208,18 @@ public final class WireRoutePlanner {
 
     private static List<Vec3> transition(Vec3 start, Vec3 end) {
         if (Math.abs(start.y - end.y) < 0.05) return List.of(end);
-        if (end.y < start.y) return List.of(new Vec3(end.x, start.y, end.z), end);
-        return List.of(new Vec3((start.x + end.x) * 0.5, end.y, (start.z + end.z) * 0.5), end);
+        // Changes in height happen on the shared edge between two columns,
+        // rather than after moving to the centre of the next block. This
+        // makes a wire drop from a ledge, or climb a step, where a player
+        // would expect it to in Minecraft.
+        Vec3 horizontal = new Vec3(end.x - start.x, 0.0, end.z - start.z).normalize();
+        // Put the vertical leg just inside the lower column's open side of the
+        // ledge. Rendering exactly on the shared block face causes z-fighting.
+        Vec3 lowerSide = end.y < start.y ? horizontal : horizontal.scale(-1.0);
+        Vec3 edgeAtStartHeight = new Vec3((start.x + end.x) * 0.5 + lowerSide.x * LEDGE_FACE_CLEARANCE,
+                start.y, (start.z + end.z) * 0.5 + lowerSide.z * LEDGE_FACE_CLEARANCE);
+        Vec3 edgeAtEndHeight = new Vec3(edgeAtStartHeight.x, end.y, edgeAtStartHeight.z);
+        return List.of(edgeAtStartHeight, edgeAtEndHeight, end);
     }
 
     private static boolean inside(int x, int z, int minX, int maxX, int minZ, int maxZ) {

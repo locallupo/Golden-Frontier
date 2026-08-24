@@ -3,7 +3,7 @@
   "parent": "detonator",
   "texture_size": [32, 32],
   "textures": {
-    "1": "golden-frontier:block/detonator",
+    "0": "golden-frontier:block/detonator",
     "particle": "minecraft:block/spruce_planks"
   },
   "elements": [

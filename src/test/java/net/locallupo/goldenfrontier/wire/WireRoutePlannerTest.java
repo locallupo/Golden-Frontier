@@ -25,6 +25,7 @@ class WireRoutePlannerTest {
         assertTrue(WireRaycastResultFilter.isBlockCollision(
                 new BlockHitResult(new Vec3(1.0, 2.0, 3.0), Direction.UP, new BlockPos(1, 2, 3), false)));
     }
+
     @Test
     void routesAroundADetourWiderThanTheOldSixteenBlockMargin() {
         TestTerrain terrain = TestTerrain.floor(-5, 45, -24, 24, 0);
@@ -49,6 +50,8 @@ class WireRoutePlannerTest {
         assertFalse(route.isEmpty());
         assertTrue(route.stream().anyMatch(point -> Math.abs(point.y - 6.08) < 0.01));
         assertTrue(route.stream().anyMatch(point -> Math.abs(point.y - 1.08) < 0.01));
+        assertTrue(route.stream().anyMatch(point -> Math.abs(point.x - 1.025) < 0.01 && Math.abs(point.y - 6.08) < 0.01));
+        assertTrue(route.stream().anyMatch(point -> Math.abs(point.x - 1.025) < 0.01 && Math.abs(point.y - 1.08) < 0.01));
     }
 
     @Test

@@ -1,19 +1,35 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,pressed=false": {
       "model": "golden-frontier:block/detonator",
       "y": 90
     },
-    "facing=south": {
+    "facing=south,pressed=false": {
       "model": "golden-frontier:block/detonator",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,pressed=false": {
       "model": "golden-frontier:block/detonator",
       "y": 270
     },
-    "facing=north": {
+    "facing=north,pressed=false": {
       "model": "golden-frontier:block/detonator",
+      "y": 360
+    },
+    "facing=east,pressed=true": {
+      "model": "golden-frontier:block/detonator_pressed",
+      "y": 90
+    },
+    "facing=south,pressed=true": {
+      "model": "golden-frontier:block/detonator_pressed",
+      "y": 180
+    },
+    "facing=west,pressed=true": {
+      "model": "golden-frontier:block/detonator_pressed",
+      "y": 270
+    },
+    "facing=north,pressed=true": {
+      "model": "golden-frontier:block/detonator_pressed",
       "y": 360
     }
   }

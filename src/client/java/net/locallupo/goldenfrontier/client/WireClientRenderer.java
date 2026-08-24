@@ -17,6 +17,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.GpuFormat;
+import com.mojang.blaze3d.pipeline.ColorTargetState;
+import com.mojang.blaze3d.pipeline.RenderPipeline;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.client.renderer.rendertype.RenderSetup;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.resources.Identifier;
 
 import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.GoldenFrontier;
@@ -37,13 +44,18 @@ import java.util.Set;
 import java.util.PriorityQueue;
 
 public final class WireClientRenderer {
-    // Vanilla's block raycaster treats a segment very close to a collision
-    // face as intersecting it.  Keep the wire visibly and numerically above
-    // its support surface so a level path over ordinary ground is not
-    // rejected as travelling through that ground.
-    private static final double GROUND_CLEARANCE = 0.20;
+    // Keep the wire clear of its support face without leaving a visible gap.
+    // A wire should rest just above its support: its centre needs only its
+    // tube radius plus a tiny z-fighting margin, not a visible air gap.
+    private static final double GROUND_CLEARANCE = 0.055;
     private static final Map<WireConnection, List<Vec3>> ROUTE_CACHE = new HashMap<>();
     private static final Set<String> REPORTED_ROUTE_COLLISIONS = new HashSet<>();
+    private static final RenderType WIRE_RENDER_TYPE = RenderType.create("golden_frontier_wire",
+            RenderSetup.builder(RenderPipelines.register(RenderPipeline.builder(RenderPipelines.DEBUG_FILLED_SNIPPET)
+                            .withLocation(Identifier.fromNamespaceAndPath("golden-frontier", "pipeline/wire"))
+                            .withColorTargetState(new ColorTargetState(Optional.empty(), GpuFormat.RGBA8_UNORM, 15))
+                            .build()))
+                    .createRenderSetup());
     private static ClientLevel cachedLevel;
     private static long cachedTickBucket = Long.MIN_VALUE;
 
@@ -81,7 +93,7 @@ public final class WireClientRenderer {
         WireClientState.selection().ifPresent(pos -> {
             if (isEndpoint(level, pos)) {
                 Vec3 start = endpointPosition(pos);
-                submitLeashGeometry(context, poseStack, level, start, start.add(0.0, 0.75, 0.0), false);
+                submitWireGeometry(context, poseStack, level, List.of(start, start.add(0.0, 0.75, 0.0)));
             }
         });
 
@@ -94,9 +106,7 @@ public final class WireClientRenderer {
         if (points.size() < 2) {
             return;
         }
-        for (int i = 0; i < points.size() - 1; i++) {
-            submitLeashGeometry(context, poseStack, level, points.get(i), points.get(i + 1), false);
-        }
+        submitWireGeometry(context, poseStack, level, points);
     }
 
     private static List<Vec3> connectionPoints(ClientLevel level, WireConnection connection) {
@@ -715,57 +725,50 @@ public final class WireClientRenderer {
         }
     }
 
-    private static void submitLeashGeometry(LevelRenderContext context, PoseStack poseStack, ClientLevel level,
-                                            Vec3 start, Vec3 end, boolean slack) {
+    private static void submitWireGeometry(LevelRenderContext context, PoseStack poseStack, ClientLevel level,
+                                           List<Vec3> points) {
         context.submitNodeCollector().submitCustomGeometry(
                 poseStack,
-                RenderTypes.leash(),
-                (pose, consumer) -> renderLeashTube(pose.pose(), consumer, level, start, end, slack)
+                WIRE_RENDER_TYPE,
+                (pose, consumer) -> renderWireTube(pose.pose(), consumer, level, points)
         );
     }
 
-    private static void renderLeashTube(org.joml.Matrix4fc matrix, VertexConsumer consumer, ClientLevel level,
-                                        Vec3 start, Vec3 end, boolean slack) {
-        Vec3 direction = end.subtract(start).normalize();
-        Vec3 firstAxis = direction.cross(new Vec3(0.0, 1.0, 0.0));
-        if (firstAxis.lengthSqr() < 0.0001) {
-            firstAxis = direction.cross(new Vec3(1.0, 0.0, 0.0));
-        }
-        firstAxis = firstAxis.normalize().scale(0.045);
-        Vec3 secondAxis = direction.cross(firstAxis).normalize().scale(0.045);
-
-        int segments = 48;
+    /** Renders a single continuous tube, with one ring per route vertex. */
+    private static void renderWireTube(org.joml.Matrix4fc matrix, VertexConsumer consumer, ClientLevel level,
+                                       List<Vec3> points) {
+        if (points.size() < 2) return;
         int sides = 8;
-        for (int segment = 0; segment < segments; segment++) {
-            // Keep neighboring sections edge-to-edge. Overlapping the quads causes
-            // coplanar surfaces to z-fight, especially where the wire bends.
-            float overlap = 0.0f;
-            float startFraction = Math.max(0.0f, (segment / (float) segments) - overlap);
-            float endFraction = Math.min(1.0f, ((segment + 1) / (float) segments) + overlap);
-            Vec3 segmentStart = ropePoint(start, end, startFraction, slack);
-            Vec3 segmentEnd = ropePoint(start, end, endFraction, slack);
-            float shade = segment % 2 == 0 ? 1.0f : 0.85f;
-
+        List<TubeFrame> frames = new ArrayList<>(points.size());
+        for (int point = 0; point < points.size(); point++) frames.add(tubeFrame(points, point));
+        for (int segment = 0; segment < points.size() - 1; segment++) {
             for (int side = 0; side < sides; side++) {
-                double startAngle = side * Math.PI * 2.0 / sides;
-                double endAngle = (side + 1) * Math.PI * 2.0 / sides;
-                Vec3 startOffset = firstAxis.scale(Math.cos(startAngle)).add(secondAxis.scale(Math.sin(startAngle)));
-                Vec3 endOffset = firstAxis.scale(Math.cos(endAngle)).add(secondAxis.scale(Math.sin(endAngle)));
-
-                addVertex(consumer, matrix, level, segmentStart.add(startOffset), shade);
-                addVertex(consumer, matrix, level, segmentStart.add(endOffset), shade);
-                addVertex(consumer, matrix, level, segmentEnd.add(endOffset), shade);
-                addVertex(consumer, matrix, level, segmentEnd.add(startOffset), shade);
+                double first = side * Math.PI * 2.0 / sides;
+                double second = (side + 1) * Math.PI * 2.0 / sides;
+                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), first);
+                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), second);
+                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), second);
+                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), first);
             }
         }
     }
 
-    private static Vec3 ropePoint(Vec3 start, Vec3 end, float fraction, boolean slack) {
-        Vec3 point = start.lerp(end, fraction);
-        if (slack) {
-            point = point.subtract(0.0, Math.sin(Math.PI * fraction) * 0.15, 0.0);
-        }
-        return point;
+    private static TubeFrame tubeFrame(List<Vec3> points, int index) {
+        Vec3 tangent = index == 0 ? points.get(1).subtract(points.get(0))
+                : index == points.size() - 1 ? points.getLast().subtract(points.get(index - 1))
+                : points.get(index + 1).subtract(points.get(index - 1));
+        if (tangent.lengthSqr() < 0.0001) tangent = points.get(index + 1).subtract(points.get(index));
+        tangent = tangent.normalize();
+        Vec3 firstAxis = tangent.cross(new Vec3(0.0, 1.0, 0.0));
+        if (firstAxis.lengthSqr() < 0.0001) firstAxis = tangent.cross(new Vec3(1.0, 0.0, 0.0));
+        firstAxis = firstAxis.normalize().scale(0.045);
+        return new TubeFrame(firstAxis, tangent.cross(firstAxis).normalize().scale(0.045));
+    }
+
+    private static void addTubeVertex(VertexConsumer consumer, org.joml.Matrix4fc matrix, ClientLevel level,
+                                      Vec3 center, TubeFrame frame, double angle) {
+        addVertex(consumer, matrix, level, center.add(frame.firstAxis().scale(Math.cos(angle)))
+                .add(frame.secondAxis().scale(Math.sin(angle))), 0.92f);
     }
 
     private static void addVertex(VertexConsumer consumer, org.joml.Matrix4fc matrix, ClientLevel level,
@@ -795,6 +798,9 @@ public final class WireClientRenderer {
     }
 
     private record SurfacePoint(Vec3 position, BlockPos supportBlock, Direction supportFace) {
+    }
+
+    private record TubeFrame(Vec3 firstAxis, Vec3 secondAxis) {
     }
 
     private record ColumnKey(int x, int z) {
