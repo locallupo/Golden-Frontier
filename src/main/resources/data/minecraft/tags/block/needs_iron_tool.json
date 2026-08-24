@@ -4,9 +4,10 @@
     "golden-frontier:sandstone_gold_ore",
     "golden-frontier:red_sandstone_gold_ore",
     "golden-frontier:pyrite_ore",
-    "golden-frontier:deepslate_pyrite_ore",
     "golden-frontier:sandstone_pyrite_ore",
     "golden-frontier:red_sandstone_pyrite_ore",
-    "golden-frontier:pyrite_block",
-    "golden-frontier:raw_pyrite_block"]
+    "golden-frontier:deepslate_pyrite_ore",
+    "golden-frontier:raw_pyrite_block",
+    "golden-frontier:pyrite_block"
+  ]
 }

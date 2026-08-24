@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "golden-frontier:detonator",
     "golden-frontier:red_painted_planks",
     "golden-frontier:orange_painted_planks",
     "golden-frontier:yellow_painted_planks",
@@ -11,5 +12,6 @@
     "golden-frontier:blue_painted_planks",
     "golden-frontier:purple_painted_planks",
     "golden-frontier:magenta_painted_planks",
-    "golden-frontier:pink_painted_planks"]
+    "golden-frontier:pink_painted_planks"
+  ]
 }
