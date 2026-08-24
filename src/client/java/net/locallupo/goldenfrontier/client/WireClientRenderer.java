@@ -11,6 +11,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -20,6 +21,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.GoldenFrontier;
 import net.locallupo.goldenfrontier.wire.WireConnection;
+import net.locallupo.goldenfrontier.wire.WireRoutePlanner;
+import net.locallupo.goldenfrontier.wire.WireEndpointCollisionFilter;
+import net.locallupo.goldenfrontier.wire.WireRaycastResultFilter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,8 +37,13 @@ import java.util.Set;
 import java.util.PriorityQueue;
 
 public final class WireClientRenderer {
-    private static final double GROUND_CLEARANCE = 0.08;
+    // Vanilla's block raycaster treats a segment very close to a collision
+    // face as intersecting it.  Keep the wire visibly and numerically above
+    // its support surface so a level path over ordinary ground is not
+    // rejected as travelling through that ground.
+    private static final double GROUND_CLEARANCE = 0.20;
     private static final Map<WireConnection, List<Vec3>> ROUTE_CACHE = new HashMap<>();
+    private static final Set<String> REPORTED_ROUTE_COLLISIONS = new HashSet<>();
     private static ClientLevel cachedLevel;
     private static long cachedTickBucket = Long.MIN_VALUE;
 
@@ -96,15 +105,88 @@ public final class WireClientRenderer {
             return cached;
         }
 
-        Vec3 start = endpointPosition(connection.first());
-        Vec3 end = endpointPosition(connection.second());
-        List<Vec3> groundRoute = findGroundRoute(level, connection.first(), connection.second(), start, end);
+        WireRoutePlanner.RouteResult result = WireRoutePlanner.findRouteWithDiagnostics(
+                routeTerrain(level), connection.first(), connection.second());
+        List<Vec3> groundRoute = result.points();
+        GoldenFrontier.LOGGER.info("Wire route {} -> {}: {}; points={}",
+                connection.first(), connection.second(), result.diagnostic(), groundRoute.size());
+        if (!groundRoute.isEmpty()) {
+            GoldenFrontier.LOGGER.info("Wire route heights {} -> {}: {}", connection.first(), connection.second(),
+                    groundRoute.stream().map(point -> String.format("%.2f", point.y)).toList());
+        }
         if (groundRoute.size() >= 2) {
             ROUTE_CACHE.put(connection, groundRoute);
             return groundRoute;
         }
         ROUTE_CACHE.put(connection, List.of());
         return List.of();
+    }
+
+    private static WireRoutePlanner.Terrain routeTerrain(ClientLevel level) {
+        return new WireRoutePlanner.Terrain() {
+            private final Map<ColumnKey, List<WireRoutePlanner.Surface>> surfaceCache = new HashMap<>();
+
+            @Override
+            public int minY() {
+                return level.dimensionType().minY();
+            }
+
+            @Override
+            public int maxY() {
+                return minY() + level.dimensionType().height() - 1;
+            }
+
+            @Override
+            public List<WireRoutePlanner.Surface> surfacesAt(int x, int z, BlockPos first, BlockPos second) {
+                ColumnKey key = new ColumnKey(x, z);
+                List<WireRoutePlanner.Surface> cached = surfaceCache.get(key);
+                if (cached != null) {
+                    return cached;
+                }
+                List<WireRoutePlanner.Surface> result = new ArrayList<>();
+                for (int y = minY(); y <= maxY(); y++) {
+                    Optional<SurfacePoint> surface = WireClientRenderer.surfaceAt(level, x, z, y, first, second);
+                    if (surface.isPresent()) {
+                        result.add(new WireRoutePlanner.Surface(surface.get().position(), surface.get().supportBlock()));
+                    }
+                }
+                List<WireRoutePlanner.Surface> immutableResult = List.copyOf(result);
+                surfaceCache.put(key, immutableResult);
+                return immutableResult;
+            }
+
+            @Override
+            public boolean lineClear(Vec3 start, Vec3 end, BlockPos first, BlockPos second) {
+                return lineIsClearIgnoringEndpointBlocks(level, start, end, first, second);
+            }
+        };
+    }
+
+    /**
+     * Wire segments are allowed to enter their two attached blocks, but no
+     * other collision block.  Trimming a fixed amount from each end fails for
+     * adjacent endpoints because the trimmed line can reverse or disappear.
+     */
+    private static boolean lineIsClearIgnoringEndpointBlocks(ClientLevel level, Vec3 start, Vec3 end,
+                                                               BlockPos firstEndpoint, BlockPos secondEndpoint) {
+        return WireEndpointCollisionFilter.isClear((from, to) -> {
+            HitResult hit = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE,
+                    CollisionContext.empty()));
+            // level.clip represents a miss as a BlockHitResult whose block
+            // position is the ray's terminal cell.  It is not a collision.
+            if (!WireRaycastResultFilter.isBlockCollision(hit) || !(hit instanceof BlockHitResult blockHit)) {
+                return Optional.empty();
+            }
+            BlockPos hitBlock = blockHit.getBlockPos();
+            if (!hitBlock.equals(firstEndpoint) && !hitBlock.equals(secondEndpoint)) {
+                String key = firstEndpoint + " -> " + secondEndpoint + ": " + start + " -> " + end + " hit " + hitBlock;
+                if (REPORTED_ROUTE_COLLISIONS.add(key)) {
+                    GoldenFrontier.LOGGER.info("Wire route collision: endpoints {} -> {}, segment {} -> {}, hit {} ({})",
+                            firstEndpoint, secondEndpoint, start, end, hitBlock, level.getBlockState(hitBlock).getBlock());
+                }
+            }
+            return Optional.of(new WireEndpointCollisionFilter.Hit(blockHit.getLocation(), hitBlock));
+        }, start, end, firstEndpoint, secondEndpoint);
     }
 
     private static List<Vec3> findGroundRoute(ClientLevel level, BlockPos first, BlockPos second,
@@ -713,5 +795,8 @@ public final class WireClientRenderer {
     }
 
     private record SurfacePoint(Vec3 position, BlockPos supportBlock, Direction supportFace) {
+    }
+
+    private record ColumnKey(int x, int z) {
     }
 }

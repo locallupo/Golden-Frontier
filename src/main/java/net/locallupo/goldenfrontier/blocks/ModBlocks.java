@@ -171,8 +171,8 @@ public class ModBlocks {
 
     public static final Block DYNAMITE = register(
             ModBlockItemIds.DYNAMITE,
-            Block::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.TNT)
+            DynamiteBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.TNT).noOcclusion()
     );
 
     // DECORATIVE BLOCKS

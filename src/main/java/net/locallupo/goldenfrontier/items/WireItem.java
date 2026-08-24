@@ -35,6 +35,8 @@ public class WireItem extends Item {
         Level level = context.getLevel();
 
         if (!isEndpoint(level, clickedPos)) {
+            GoldenFrontier.LOGGER.info("Wire click ignored at {}: {} is not a detonator or dynamite", clickedPos,
+                    level.getBlockState(clickedPos).getBlock());
             return InteractionResult.PASS;
         }
 
@@ -48,7 +50,9 @@ public class WireItem extends Item {
         }
 
         UUID playerId = serverPlayer.getUUID();
-        GoldenFrontier.LOGGER.info("Wire used on {} at {}", level.getBlockState(clickedPos).getBlock(), clickedPos);
+        PendingSelection pending = PENDING.get(playerId);
+        GoldenFrontier.LOGGER.info("Wire click: player={}, endpoint={} at {}, pending={}", serverPlayer.getName().getString(),
+                level.getBlockState(clickedPos).getBlock(), clickedPos, pending == null ? "none" : pending.position());
         if (serverPlayer.isShiftKeyDown()) {
             PENDING.remove(playerId);
             ServerLevel serverLevel = (ServerLevel) serverPlayer.level();
@@ -61,27 +65,31 @@ public class WireItem extends Item {
             return InteractionResult.PASS;
         }
 
-        PendingSelection pending = PENDING.get(playerId);
         if (pending == null || !pending.dimension().equals(level.dimension())) {
             PENDING.put(playerId, new PendingSelection(clickedPos.immutable(), level.dimension()));
             WireNetworking.sendSelection(serverPlayer, java.util.Optional.of(clickedPos.immutable()));
+            GoldenFrontier.LOGGER.info("Wire selection started at {}", clickedPos);
             return InteractionResult.SUCCESS_SERVER;
         }
 
         if (pending.position().equals(clickedPos)) {
             PENDING.remove(playerId);
             WireNetworking.sendSelection(serverPlayer, java.util.Optional.empty());
+            GoldenFrontier.LOGGER.info("Wire selection cancelled at {}", clickedPos);
             return InteractionResult.SUCCESS_SERVER;
         }
 
         ServerLevel serverLevel = (ServerLevel) serverPlayer.level();
         WireSavedData data = WireSavedData.get(serverLevel);
-        if (data.add(pending.position(), clickedPos)) {
+        boolean added = data.add(pending.position(), clickedPos);
+        if (added) {
             if (!serverPlayer.getAbilities().instabuild) {
                 context.getItemInHand().shrink(1);
             }
             WireNetworking.broadcast(serverLevel);
         }
+        GoldenFrontier.LOGGER.info("Wire connection {} -> {}: added={}, totalConnections={}",
+                pending.position(), clickedPos, added, data.connections().size());
 
         PENDING.remove(playerId);
         WireNetworking.sendSelection(serverPlayer, java.util.Optional.empty());

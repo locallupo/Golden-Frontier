@@ -11,10 +11,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.locallupo.goldenfrontier.wire.WireSavedData;
+import net.locallupo.goldenfrontier.items.ModItems;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -116,6 +119,26 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
         }
 
         return InteractionResult.SUCCESS_SERVER;
+    }
+
+    /**
+     * A detonator has an empty-hand action, but wire must reach WireItem.useOn
+     * so it can be selected as a connection endpoint rather than consumed here.
+     */
+    @Override
+    protected InteractionResult useItemOn(
+            ItemStack itemStack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
+        if (itemStack.is(ModItems.WIRE)) {
+            return InteractionResult.PASS;
+        }
+        return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
 
