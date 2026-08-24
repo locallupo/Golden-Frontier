@@ -33,8 +33,10 @@ import net.locallupo.goldenfrontier.wire.WireEndpointCollisionFilter;
 import net.locallupo.goldenfrontier.wire.WireRaycastResultFilter;
 
 import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -84,11 +86,16 @@ public final class WireClientRenderer {
         poseStack.pushPose();
         poseStack.translate(-camera.x, -camera.y, -camera.z);
 
+        Set<WireConnection> renderedConnections = new HashSet<>();
         for (WireConnection connection : WireClientState.connections()) {
             if (isEndpoint(level, connection.first()) && isEndpoint(level, connection.second())) {
                 renderConnection(context, poseStack, level, connection);
+                renderedConnections.add(connection);
             }
         }
+        WireClientState.ignition().ifPresent(ignition -> ignition.connections().forEach(connection -> {
+            if (renderedConnections.add(connection)) renderConnection(context, poseStack, level, connection);
+        }));
 
         WireClientState.selection().ifPresent(pos -> {
             if (isEndpoint(level, pos)) {
@@ -106,7 +113,78 @@ public final class WireClientRenderer {
         if (points.size() < 2) {
             return;
         }
-        submitWireGeometry(context, poseStack, level, points);
+        Optional<IgnitionProgress> ignition = ignitionProgress(connection, points);
+        List<Vec3> visibleWire = ignition.map(progress -> unburnedPath(points, progress)).orElse(points);
+        if (visibleWire.size() >= 2) submitWireGeometry(context, poseStack, level, visibleWire);
+        ignition.ifPresent(progress -> renderIgnitionPulse(context, poseStack, level, points, progress));
+    }
+
+    private static Optional<IgnitionProgress> ignitionProgress(WireConnection connection, List<Vec3> points) {
+        Optional<WireClientState.Ignition> ignition = WireClientState.ignition();
+        if (ignition.isEmpty()) return Optional.empty();
+        SignalTraversal traversal = signalTraversal(ignition.get(), connection);
+        if (traversal == null) return Optional.empty();
+        double elapsed = (System.nanoTime() - ignition.get().startedAtNanos()) / 1_000_000_000.0;
+        if (elapsed > 0.65) {
+            WireClientState.clearIgnition();
+            return Optional.empty();
+        }
+        double delay = traversal.hops() * 0.055;
+        double duration = Math.max(0.16, Math.min(0.42, routeLength(points) / 24.0));
+        double progress = (elapsed - delay) / duration;
+        return Optional.of(new IgnitionProgress(progress, traversal.fromFirst(), routeLength(points)));
+    }
+
+    private static List<Vec3> unburnedPath(List<Vec3> points, IgnitionProgress progress) {
+        if (progress.progress() <= 0.0) return points;
+        if (progress.progress() >= 1.0) return List.of();
+        double burned = progress.progress() * progress.length();
+        return progress.fromFirst() ? pathSlice(points, burned, progress.length())
+                : pathSlice(points, 0.0, progress.length() - burned);
+    }
+
+    private static void renderIgnitionPulse(LevelRenderContext context, PoseStack poseStack, ClientLevel level,
+                                            List<Vec3> points, IgnitionProgress progress) {
+        if (progress.progress() <= 0.0 || progress.progress() >= 1.0) return;
+        boolean bright = ((long) (System.nanoTime() / 65_000_000L) & 1L) == 0L;
+        double head = Math.min(progress.length(), Math.max(0.0, progress.progress() * progress.length()));
+        double tail = Math.max(0.0, head - 0.42);
+        List<Vec3> pulse = progress.fromFirst() ? pathSlice(points, tail, head)
+                : pathSlice(points, progress.length() - head, progress.length() - tail);
+        if (pulse.size() >= 2) submitWireGeometry(context, poseStack, level, pulse,
+                1.0f, bright ? 0.34f : 0.12f, bright ? 0.03f : 0.0f, 0.062);
+    }
+
+    private static SignalTraversal signalTraversal(WireClientState.Ignition ignition, WireConnection target) {
+        if (!ignition.connections().contains(target)) return null;
+        if (target.first().equals(ignition.detonator())) return new SignalTraversal(0, true);
+        if (target.second().equals(ignition.detonator())) return new SignalTraversal(0, false);
+        return null;
+    }
+
+    private static double routeLength(List<Vec3> points) {
+        double length = 0.0;
+        for (int i = 1; i < points.size(); i++) length += points.get(i - 1).distanceTo(points.get(i));
+        return length;
+    }
+
+    private static List<Vec3> pathSlice(List<Vec3> points, double from, double to) {
+        List<Vec3> result = new ArrayList<>();
+        double travelled = 0.0;
+        for (int i = 1; i < points.size() && travelled < to; i++) {
+            Vec3 start = points.get(i - 1);
+            Vec3 end = points.get(i);
+            double length = start.distanceTo(end);
+            if (length < 0.0001) continue;
+            double segmentStart = Math.max(from, travelled);
+            double segmentEnd = Math.min(to, travelled + length);
+            if (segmentStart < segmentEnd) {
+                addRoutePoint(result, start.lerp(end, (segmentStart - travelled) / length));
+                addRoutePoint(result, start.lerp(end, (segmentEnd - travelled) / length));
+            }
+            travelled += length;
+        }
+        return result;
     }
 
     private static List<Vec3> connectionPoints(ClientLevel level, WireConnection connection) {
@@ -727,33 +805,38 @@ public final class WireClientRenderer {
 
     private static void submitWireGeometry(LevelRenderContext context, PoseStack poseStack, ClientLevel level,
                                            List<Vec3> points) {
+        submitWireGeometry(context, poseStack, level, points, 0.23f, 0.23f, 0.23f, 0.045);
+    }
+
+    private static void submitWireGeometry(LevelRenderContext context, PoseStack poseStack, ClientLevel level,
+                                           List<Vec3> points, float red, float green, float blue, double radius) {
         context.submitNodeCollector().submitCustomGeometry(
                 poseStack,
                 WIRE_RENDER_TYPE,
-                (pose, consumer) -> renderWireTube(pose.pose(), consumer, level, points)
+                (pose, consumer) -> renderWireTube(pose.pose(), consumer, level, points, red, green, blue, radius)
         );
     }
 
     /** Renders a single continuous tube, with one ring per route vertex. */
     private static void renderWireTube(org.joml.Matrix4fc matrix, VertexConsumer consumer, ClientLevel level,
-                                       List<Vec3> points) {
+                                       List<Vec3> points, float red, float green, float blue, double radius) {
         if (points.size() < 2) return;
         int sides = 8;
         List<TubeFrame> frames = new ArrayList<>(points.size());
-        for (int point = 0; point < points.size(); point++) frames.add(tubeFrame(points, point));
+        for (int point = 0; point < points.size(); point++) frames.add(tubeFrame(points, point, radius));
         for (int segment = 0; segment < points.size() - 1; segment++) {
             for (int side = 0; side < sides; side++) {
                 double first = side * Math.PI * 2.0 / sides;
                 double second = (side + 1) * Math.PI * 2.0 / sides;
-                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), first);
-                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), second);
-                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), second);
-                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), first);
+                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), first, red, green, blue);
+                addTubeVertex(consumer, matrix, level, points.get(segment), frames.get(segment), second, red, green, blue);
+                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), second, red, green, blue);
+                addTubeVertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), first, red, green, blue);
             }
         }
     }
 
-    private static TubeFrame tubeFrame(List<Vec3> points, int index) {
+    private static TubeFrame tubeFrame(List<Vec3> points, int index, double radius) {
         Vec3 tangent = index == 0 ? points.get(1).subtract(points.get(0))
                 : index == points.size() - 1 ? points.getLast().subtract(points.get(index - 1))
                 : points.get(index + 1).subtract(points.get(index - 1));
@@ -761,24 +844,29 @@ public final class WireClientRenderer {
         tangent = tangent.normalize();
         Vec3 firstAxis = tangent.cross(new Vec3(0.0, 1.0, 0.0));
         if (firstAxis.lengthSqr() < 0.0001) firstAxis = tangent.cross(new Vec3(1.0, 0.0, 0.0));
-        firstAxis = firstAxis.normalize().scale(0.045);
-        return new TubeFrame(firstAxis, tangent.cross(firstAxis).normalize().scale(0.045));
+        firstAxis = firstAxis.normalize().scale(radius);
+        return new TubeFrame(firstAxis, tangent.cross(firstAxis).normalize().scale(radius));
     }
 
     private static void addTubeVertex(VertexConsumer consumer, org.joml.Matrix4fc matrix, ClientLevel level,
-                                      Vec3 center, TubeFrame frame, double angle) {
+                                      Vec3 center, TubeFrame frame, double angle, float red, float green, float blue) {
         addVertex(consumer, matrix, level, center.add(frame.firstAxis().scale(Math.cos(angle)))
-                .add(frame.secondAxis().scale(Math.sin(angle))), 0.92f);
+                .add(frame.secondAxis().scale(Math.sin(angle))), red, green, blue);
     }
 
     private static void addVertex(VertexConsumer consumer, org.joml.Matrix4fc matrix, ClientLevel level,
                                   Vec3 position, float shade) {
+        addVertex(consumer, matrix, level, position, 0.23f * shade, 0.23f * shade, 0.23f * shade);
+    }
+
+    private static void addVertex(VertexConsumer consumer, org.joml.Matrix4fc matrix, ClientLevel level,
+                                  Vec3 position, float red, float green, float blue) {
         BlockPos lightPos = BlockPos.containing(position);
         int blockLight = level.getBrightness(LightLayer.BLOCK, lightPos);
         int skyLight = level.getBrightness(LightLayer.SKY, lightPos);
         int light = (blockLight << 4) | (skyLight << 20);
         consumer.addVertex(matrix, (float) position.x, (float) position.y, (float) position.z)
-                .setColor(0.23f * shade, 0.23f * shade, 0.23f * shade, 1.0f)
+                .setColor(red, green, blue, 1.0f)
                 .setLight(light);
     }
 
@@ -801,6 +889,12 @@ public final class WireClientRenderer {
     }
 
     private record TubeFrame(Vec3 firstAxis, Vec3 secondAxis) {
+    }
+
+    private record SignalTraversal(int hops, boolean fromFirst) {
+    }
+
+    private record IgnitionProgress(double progress, boolean fromFirst, double length) {
     }
 
     private record ColumnKey(int x, int z) {

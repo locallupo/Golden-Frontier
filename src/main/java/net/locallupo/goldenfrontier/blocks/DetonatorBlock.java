@@ -18,6 +18,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.locallupo.goldenfrontier.wire.WireSavedData;
+import net.locallupo.goldenfrontier.wire.WireNetworking;
 import net.locallupo.goldenfrontier.items.ModItems;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -131,6 +132,7 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
             return InteractionResult.SUCCESS_SERVER;
         }
         serverLevel.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_CLIENTS);
+        WireNetworking.broadcastIgnition(serverLevel, pos);
         serverLevel.scheduleTick(pos, this, DETONATION_DELAY_TICKS);
         return InteractionResult.SUCCESS_SERVER;
     }
@@ -140,15 +142,8 @@ public class DetonatorBlock extends HorizontalDirectionalBlock {
         if (!state.is(this) || !state.getValue(PRESSED)) {
             return;
         }
-        for (BlockPos dynamite : WireSavedData.get(serverLevel).connectedDynamite(serverLevel, pos)) {
-            serverLevel.explode(
-                    null,
-                    dynamite.getX() + 0.5D,
-                    dynamite.getY() + 0.5D,
-                    dynamite.getZ() + 0.5D,
-                    4.0F,
-                    Level.ExplosionInteraction.BLOCK
-            );
+        for (BlockPos dynamite : WireSavedData.get(serverLevel).adjacentDynamite(serverLevel, pos)) {
+            DynamiteBlock.detonate(serverLevel, dynamite);
         }
         if (serverLevel.getBlockState(pos).is(this)) {
             serverLevel.setBlock(pos, state.setValue(PRESSED, false), Block.UPDATE_CLIENTS);

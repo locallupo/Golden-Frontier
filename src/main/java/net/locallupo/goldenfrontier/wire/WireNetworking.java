@@ -25,6 +25,7 @@ public final class WireNetworking {
     public static void initialize() {
         PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Connections.TYPE, WirePayloads.Connections.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Selection.TYPE, WirePayloads.Selection.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Ignition.TYPE, WirePayloads.Ignition.CODEC);
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> syncPlayer(handler.getPlayer()));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
@@ -50,6 +51,14 @@ public final class WireNetworking {
 
     public static void sendSelection(ServerPlayer player, java.util.Optional<net.minecraft.core.BlockPos> position) {
         ServerPlayNetworking.send(player, new WirePayloads.Selection(position));
+    }
+
+    public static void broadcastIgnition(ServerLevel level, net.minecraft.core.BlockPos detonator) {
+        WirePayloads.Ignition payload = new WirePayloads.Ignition(detonator.immutable(),
+                WireSavedData.get(level).connectionsAt(detonator));
+        for (ServerPlayer player : PlayerLookup.level(level)) {
+            ServerPlayNetworking.send(player, payload);
+        }
     }
 
     private static void tickLevel(ServerLevel level) {

@@ -11,6 +11,8 @@ public class GoldenFrontierClient implements ClientModInitializer {
 				WireClientState.setConnections(payload.connections()));
 		ClientPlayNetworking.registerGlobalReceiver(WirePayloads.Selection.TYPE, (payload, context) ->
 				WireClientState.setSelection(payload.position()));
+		ClientPlayNetworking.registerGlobalReceiver(WirePayloads.Ignition.TYPE, (payload, context) ->
+				WireClientState.startIgnition(payload.detonator(), payload.connections()));
 		WireClientRenderer.initialize();
 	}
 }

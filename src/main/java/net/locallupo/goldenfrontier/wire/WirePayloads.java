@@ -49,4 +49,21 @@ public final class WirePayloads {
             return TYPE;
         }
     }
+
+    public record Ignition(BlockPos detonator, List<WireConnection> connections) implements CustomPacketPayload {
+        public static final Type<Ignition> TYPE = new Type<>(
+                Identifier.fromNamespaceAndPath(GoldenFrontier.MOD_ID, "wire_ignition")
+        );
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, Ignition> CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, Ignition::detonator,
+                ByteBufCodecs.collection(ArrayList::new, WireConnection.STREAM_CODEC), Ignition::connections,
+                Ignition::new
+        );
+
+        @Override
+        public Type<? extends CustomPacketPayload> type() {
+            return TYPE;
+        }
+    }
 }

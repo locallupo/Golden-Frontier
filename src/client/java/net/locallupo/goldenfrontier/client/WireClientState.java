@@ -9,6 +9,7 @@ import java.util.Optional;
 public final class WireClientState {
     private static List<WireConnection> connections = List.of();
     private static Optional<BlockPos> selection = Optional.empty();
+    private static Optional<Ignition> ignition = Optional.empty();
 
     private WireClientState() {
     }
@@ -29,8 +30,24 @@ public final class WireClientState {
         return selection;
     }
 
+    public static void startIgnition(BlockPos detonator, List<WireConnection> connections) {
+        ignition = Optional.of(new Ignition(detonator.immutable(), System.nanoTime(), List.copyOf(connections)));
+    }
+
+    public static Optional<Ignition> ignition() {
+        return ignition;
+    }
+
+    public static void clearIgnition() {
+        ignition = Optional.empty();
+    }
+
     public static void clear() {
         connections = List.of();
         selection = Optional.empty();
+        ignition = Optional.empty();
+    }
+
+    public record Ignition(BlockPos detonator, long startedAtNanos, List<WireConnection> connections) {
     }
 }

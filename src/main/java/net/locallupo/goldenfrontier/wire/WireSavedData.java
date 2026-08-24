@@ -87,6 +87,21 @@ public class WireSavedData extends SavedData {
         return dynamite;
     }
 
+    /** Dynamite on the immediate next wire hop; used for sequential fuses. */
+    public List<BlockPos> adjacentDynamite(ServerLevel level, BlockPos source) {
+        List<BlockPos> result = new ArrayList<>();
+        for (WireConnection connection : connections) {
+            BlockPos other = connection.first().equals(source) ? connection.second()
+                    : connection.second().equals(source) ? connection.first() : null;
+            if (other != null && level.getBlockState(other).is(ModBlocks.DYNAMITE)) result.add(other.immutable());
+        }
+        return result;
+    }
+
+    public List<WireConnection> connectionsAt(BlockPos source) {
+        return connections.stream().filter(connection -> connection.contains(source)).toList();
+    }
+
     public boolean pruneInvalid(ServerLevel level) {
         boolean changed = connections.removeIf(connection ->
                 !isEndpoint(level, connection.first()) || !isEndpoint(level, connection.second()));
