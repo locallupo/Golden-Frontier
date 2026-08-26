@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "id": "golden-frontier:gold_chunk"
+    },
+    "title": {
+      "text": "Strike Gold"
+    },
+    "description": {
+      "text": "Obtain a gold chunk"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gold_chunk": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "golden-frontier:gold_chunk"
+          }
+        ]
+      }
+    }
+  }
+}
