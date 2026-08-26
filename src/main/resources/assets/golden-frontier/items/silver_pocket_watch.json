@@ -1,0 +1,122 @@
+{
+  "model": {
+    "type": "minecraft:range_dispatch",
+    "property": "minecraft:time",
+    "source": "daytime",
+    "scale": 16.0,
+    "entries": [
+      {
+        "threshold": 0.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_0"
+        }
+      },
+      {
+        "threshold": 1.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_1"
+        }
+      },
+      {
+        "threshold": 2.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_2"
+        }
+      },
+      {
+        "threshold": 3.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_3"
+        }
+      },
+      {
+        "threshold": 4.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_4"
+        }
+      },
+      {
+        "threshold": 5.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_5"
+        }
+      },
+      {
+        "threshold": 6.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_6"
+        }
+      },
+      {
+        "threshold": 7.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_7"
+        }
+      },
+      {
+        "threshold": 8.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_0"
+        }
+      },
+      {
+        "threshold": 9.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_1"
+        }
+      },
+      {
+        "threshold": 10.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_2"
+        }
+      },
+      {
+        "threshold": 11.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_3"
+        }
+      },
+      {
+        "threshold": 12.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_4"
+        }
+      },
+      {
+        "threshold": 13.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_5"
+        }
+      },
+      {
+        "threshold": 14.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_6"
+        }
+      },
+      {
+        "threshold": 15.0,
+        "model": {
+          "type": "minecraft:model",
+          "model": "golden-frontier:item/silver_pocket_watch_7"
+        }
+      }
+    ]
+  }
+}

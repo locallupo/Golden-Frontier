@@ -42,6 +42,8 @@ public class ModItems {
     public static final Item GOLD_CHUNK = register(ModItemIds.GOLD_CHUNK, Item::new, new Item.Properties());
     public static final Item GOLD_DUST = register(ModItemIds.GOLD_DUST, Item::new, new Item.Properties());
     public static final Item GOLD_FLAKE = register(ModItemIds.GOLD_FLAKE, Item::new, new Item.Properties());
+    public static final Item GOLD_POCKET_WATCH = register(ModItemIds.GOLD_POCKET_WATCH, Item::new, new Item.Properties());
+
 
     // SILVER ITEMS
 
@@ -51,6 +53,8 @@ public class ModItems {
     public static final Item RAW_SILVER = register(ModItemIds.RAW_SILVER, Item::new, new Item.Properties());
     public static final Item SILVER_INGOT = register(ModItemIds.SILVER_INGOT, Item::new, new Item.Properties());
     public static final Item SILVER_NUGGET = register(ModItemIds.SILVER_NUGGET, Item::new, new Item.Properties());
+    public static final Item SILVER_POCKET_WATCH = register(ModItemIds.SILVER_POCKET_WATCH, Item::new, new Item.Properties());
+
 
     // PYRITE ITEMS
 
@@ -102,17 +106,6 @@ public class ModItems {
     public static final Item MAGENTA_NEVADA_HAT = register(ModItemIds.MAGENTA_NEVADA_HAT, HatItem::new, new Item.Properties());
     public static final Item WHITE_NEVADA_HAT = register(ModItemIds.WHITE_NEVADA_HAT, HatItem::new, new Item.Properties());
     public static final Item BLACK_NEVADA_HAT = register(ModItemIds.BLACK_NEVADA_HAT, HatItem::new, new Item.Properties());
-
-    public static final Item MASK = register(ModItemIds.MASK, HatItem::new, new Item.Properties());
-    public static final Item RED_MASK = register(ModItemIds.RED_MASK, HatItem::new, new Item.Properties());
-    public static final Item ORANGE_MASK = register(ModItemIds.ORANGE_MASK, HatItem::new, new Item.Properties());
-    public static final Item YELLOW_MASK = register(ModItemIds.YELLOW_MASK, HatItem::new, new Item.Properties());
-    public static final Item GREEN_MASK = register(ModItemIds.GREEN_MASK, HatItem::new, new Item.Properties());
-    public static final Item CYAN_MASK = register(ModItemIds.CYAN_MASK, HatItem::new, new Item.Properties());
-    public static final Item PURPLE_MASK = register(ModItemIds.PURPLE_MASK, HatItem::new, new Item.Properties());
-    public static final Item MAGENTA_MASK = register(ModItemIds.MAGENTA_MASK, HatItem::new, new Item.Properties());
-    public static final Item BLACK_MASK = register(ModItemIds.BLACK_MASK, HatItem::new, new Item.Properties());
-
 
 
 

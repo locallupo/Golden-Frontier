@@ -130,16 +130,6 @@ public class ModItemGroup {
                     entries.accept(ModItems.MAGENTA_NEVADA_HAT);
                     entries.accept(ModItems.WHITE_NEVADA_HAT);
                     entries.accept(ModItems.BLACK_NEVADA_HAT);
-
-                    entries.accept(ModItems.MASK);
-                    entries.accept(ModItems.RED_MASK);
-                    entries.accept(ModItems.ORANGE_MASK);
-                    entries.accept(ModItems.YELLOW_MASK);
-                    entries.accept(ModItems.GREEN_MASK);
-                    entries.accept(ModItems.CYAN_MASK);
-                    entries.accept(ModItems.PURPLE_MASK);
-                    entries.accept(ModItems.MAGENTA_MASK);
-                    entries.accept(ModItems.BLACK_MASK);
                 });
     }
 }

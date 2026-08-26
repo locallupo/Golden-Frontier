@@ -13,6 +13,8 @@
   "item.golden-frontier.gold_chunk": "Gold Chunk",
   "item.golden-frontier.gold_dust": "Gold Dust",
   "item.golden-frontier.gold_flake": "Gold Flake",
+  "item.golden-frontier.gold_pocket_watch": "Gold Pocket Watch",
+
 
   "item.golden-frontier.silver_chunk": "Silver Chunk",
   "item.golden-frontier.silver_dust": "Silver Dust",
@@ -20,6 +22,8 @@
   "item.golden-frontier.raw_silver": "Raw Silver",
   "item.golden-frontier.silver_ingot": "Silver Ingot",
   "item.golden-frontier.silver_nugget": "Silver Nugget",
+  "item.golden-frontier.silver_pocket_watch": "Silver Pocket Watch",
+
 
   "item.golden-frontier.pyrite_chunk": "Pyrite Chunk",
   "item.golden-frontier.pyrite_dust": "Pyrite Dust",
@@ -62,16 +66,6 @@
   "item.golden-frontier.magenta_nevada_hat": "Magenta Nevada Hat",
   "item.golden-frontier.white_nevada_hat": "White Nevada Hat",
   "item.golden-frontier.black_nevada_hat": "Black Nevada Hat",
-
-  "item.golden-frontier.mask": "Mask",
-  "item.golden-frontier.red_mask": "Red Mask",
-  "item.golden-frontier.orange_mask": "Orange Mask",
-  "item.golden-frontier.yellow_mask": "Yellow Mask",
-  "item.golden-frontier.green_mask": "Green Mask",
-  "item.golden-frontier.cyan_mask": "Cyan Mask",
-  "item.golden-frontier.purple_mask": "Purple Mask",
-  "item.golden-frontier.magenta_mask": "Magenta Mask",
-  "item.golden-frontier.black_mask": "Black Mask",
 
   "block.golden-frontier.pyrite_ore": "Pyrite Ore",
   "block.golden-frontier.deepslate_pyrite_ore": "Deepslate Pyrite Ore",
