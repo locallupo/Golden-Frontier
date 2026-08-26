@@ -30,6 +30,8 @@ public class ModItemIds {
     public static final ResourceKey<Item> GOLD_DUST = create("gold_dust");
     public static final ResourceKey<Item> GOLD_FLAKE = create("gold_flake");
 
+    public static final ResourceKey<Item> GOLD_POCKET_WATCH = create("gold_pocket_watch");
+
     // SILVER ITEMS
 
     public static final ResourceKey<Item> SILVER_CHUNK = create("silver_chunk");
@@ -38,6 +40,8 @@ public class ModItemIds {
     public static final ResourceKey<Item> RAW_SILVER = create("raw_silver");
     public static final ResourceKey<Item> SILVER_INGOT = create("silver_ingot");
     public static final ResourceKey<Item> SILVER_NUGGET = create("silver_nugget");
+
+    public static final ResourceKey<Item> SILVER_POCKET_WATCH = create("silver_pocket_watch");
 
     // PYRITE ITEMS
 
@@ -91,13 +95,4 @@ public class ModItemIds {
     public static final ResourceKey<Item> WHITE_NEVADA_HAT = create("white_nevada_hat");
     public static final ResourceKey<Item> BLACK_NEVADA_HAT = create("black_nevada_hat");
 
-    public static final ResourceKey<Item> MASK = create("mask");
-    public static final ResourceKey<Item> RED_MASK = create("red_mask");
-    public static final ResourceKey<Item> ORANGE_MASK = create("orange_mask");
-    public static final ResourceKey<Item> YELLOW_MASK = create("yellow_mask");
-    public static final ResourceKey<Item> GREEN_MASK = create("green_mask");
-    public static final ResourceKey<Item> CYAN_MASK = create("cyan_mask");
-    public static final ResourceKey<Item> PURPLE_MASK = create("purple_mask");
-    public static final ResourceKey<Item> MAGENTA_MASK = create("magenta_mask");
-    public static final ResourceKey<Item> BLACK_MASK = create("black_mask");
 }

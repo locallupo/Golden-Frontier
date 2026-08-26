@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:gold_ingot",
+    "R": "minecraft:redstone",
+    "Q": "golden-frontier:quartz_shard"
+  },
+  "pattern": [
+    "G G",
+    " Q ",
+    "GRG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "golden-frontier:gold_pocket_watch"
+  }
+}
