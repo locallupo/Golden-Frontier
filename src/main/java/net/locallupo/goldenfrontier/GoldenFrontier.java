@@ -10,6 +10,7 @@ import net.locallupo.goldenfrontier.items.ModItems;
 import net.locallupo.goldenfrontier.wire.WireNetworking;
 import net.locallupo.goldenfrontier.crafting.ModRecipes;
 import net.locallupo.goldenfrontier.world.OreGeneration;
+import net.locallupo.goldenfrontier.villagers.ModVillagers;
 import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ public class GoldenFrontier implements ModInitializer {
 		PaintedPlanksBlock.initialize();
 		ModRecipes.initialize();
 		OreGeneration.initialize();
+		ModVillagers.initialize();
 	}
 
 	public static Identifier id(String path) {
