@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_flake",
+          "weight": 45
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_dust",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:quartz_shard",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_nugget",
+          "weight": 5
+        }
+      ]
+    }
+  ]
+}
