@@ -2,6 +2,6 @@
   "gives": { "id": "minecraft:emerald" },
   "max_uses": 16.0,
   "reputation_discount": 0.05,
-  "wants": { "count": 16.0, "id": "minecraft:gold_nugget" },
+  "wants": { "count": 2.0, "id": "golden-frontier:copper_chunk" },
   "xp": 2.0
 }

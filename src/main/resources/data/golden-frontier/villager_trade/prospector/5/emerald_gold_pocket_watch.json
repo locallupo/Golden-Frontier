@@ -1,0 +1,7 @@
+{
+  "gives": { "id": "golden-frontier:gold_pocket_watch" },
+  "max_uses": 16.0,
+  "reputation_discount": 0.05,
+  "wants": { "count": 3.0, "id": "minecraft:emerald"},
+  "xp": 2.0
+}

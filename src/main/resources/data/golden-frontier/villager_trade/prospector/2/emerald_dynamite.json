@@ -1,0 +1,7 @@
+{
+  "gives": { "id": "golden-frontier:dynamite" },
+  "max_uses": 4.0,
+  "reputation_discount": 0.05,
+  "wants": { "count": 3.0, "id": "minecraft:emerald" },
+  "xp": 2.0
+}

@@ -2,6 +2,6 @@
   "gives": { "id": "minecraft:emerald" },
   "max_uses": 16.0,
   "reputation_discount": 0.05,
-  "wants": { "count": 8.0, "id": "golden-frontier:gold_dust" },
+  "wants": { "count": 2.0, "id": "golden-frontier:raw_silver" },
   "xp": 2.0
 }

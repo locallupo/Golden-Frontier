@@ -14,13 +14,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.item.trading.TradeSet;
+import net.minecraft.world.level.block.Blocks;
 
 public final class ModVillagers {
     public static final PoiType PROSPECTOR_POI = PoiHelper.register(
             GoldenFrontier.id("prospector"),
             1,
             1,
-            ModBlocks.DETONATOR
+            Blocks.FURNACE
     );
 
     public static final ResourceKey<VillagerProfession> PROSPECTOR_KEY =
