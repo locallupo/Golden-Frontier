@@ -154,6 +154,9 @@ public class ModItems {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .register(entries -> {
                     entries.accept(ModItems.WIRE);
+                    entries.accept(ModItems.GOLD_PAN);
+                    entries.accept(ModItems.GOLD_POCKET_WATCH);
+                    entries.accept(ModItems.SILVER_POCKET_WATCH);
                 });
 
 

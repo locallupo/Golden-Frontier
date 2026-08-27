@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:leather",
+    "S": "minecraft:string",
+    "C": "minecraft:copper"
+  },
+  "pattern": [
+    " S",
+    "GCG",
+    "GCG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "golden-frontier:dynamite"
+  }
+}

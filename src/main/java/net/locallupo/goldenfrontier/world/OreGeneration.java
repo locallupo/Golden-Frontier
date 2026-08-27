@@ -41,6 +41,30 @@ public final class OreGeneration {
                 placedFeature("sandstone_silver_ore")
         );
         BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_coal_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_copper_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_iron_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.DESERT),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("sandstone_gold_ore")
+        );
+
+
+
+
+        BiomeModifications.addFeature(
                 BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
                 GenerationStep.Decoration.UNDERGROUND_ORES,
                 placedFeature("red_sandstone_pyrite_ore")
@@ -49,6 +73,26 @@ public final class OreGeneration {
                 BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
                 GenerationStep.Decoration.UNDERGROUND_ORES,
                 placedFeature("red_sandstone_silver_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_coal_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_copper_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_iron_ore")
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.UNDERGROUND_ORES,
+                placedFeature("red_sandstone_gold_ore")
         );
     }
 }

@@ -6,23 +6,113 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:gold_flake",
+          "name": "golden-frontier:copper_dust",
+          "weight": 150
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:copper_flake",
+          "weight": 90
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:copper_nugget",
           "weight": 45
         },
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:gold_dust",
+          "name": "golden-frontier:copper_chunk",
+          "weight": 5
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:silver_dust",
+          "weight": 100
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:silver_flake",
+          "weight": 60
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:silver_nugget",
           "weight": 30
         },
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:quartz_shard",
+          "name": "golden-frontier:silver_chunk",
+          "weight": 10
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:iron_dust",
+          "weight": 72
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:iron_flake",
+          "weight": 43
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:iron_nugget",
           "weight": 20
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_nugget",
+          "name": "golden-frontier:iron_chunk",
           "weight": 5
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:pyrite_dust",
+          "weight": 48
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:pyrite_flake",
+          "weight": 29
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:pyrite_nugget",
+          "weight": 14
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:pyrite_chunk",
+          "weight": 4
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:quartz_shard",
+          "weight": 25
+        },
+
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_dust",
+          "weight": 18
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_flake",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_nugget",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "golden-frontier:gold_chunk",
+          "weight": 1
         }
       ]
     }

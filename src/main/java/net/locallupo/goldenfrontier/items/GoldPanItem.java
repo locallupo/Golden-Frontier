@@ -31,7 +31,7 @@ public class GoldPanItem extends Item {
     );
 
     public GoldPanItem(Properties properties) {
-        super(properties.stacksTo(1).durability(128));
+        super(properties.stacksTo(1).durability(50).useCooldown(1));
     }
 
     @Override

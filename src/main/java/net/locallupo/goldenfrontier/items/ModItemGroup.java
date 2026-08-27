@@ -98,6 +98,9 @@ public class ModItemGroup {
                     entries.accept(ModBlocks.DETONATOR);
                     entries.accept(ModBlocks.DYNAMITE);
 
+                    entries.accept(ModItems.GOLD_POCKET_WATCH);
+                    entries.accept(ModItems.SILVER_POCKET_WATCH);
+
                     entries.accept(ModItems.CATTLEMAN_HAT);
                     entries.accept(ModItems.RED_CATTLEMAN_HAT);
                     entries.accept(ModItems.ORANGE_CATTLEMAN_HAT);

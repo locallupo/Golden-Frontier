@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "INI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "golden-frontier:gold_pan"
+  }
+}
