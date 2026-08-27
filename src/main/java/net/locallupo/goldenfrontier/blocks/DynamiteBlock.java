@@ -14,7 +14,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-/** A small dynamite bundle, not a full opaque cube. */
 public final class DynamiteBlock extends Block {
     public static final MapCodec<DynamiteBlock> CODEC = simpleCodec(DynamiteBlock::new);
     private static final VoxelShape SHAPE = Shapes.or(
@@ -46,6 +45,7 @@ public final class DynamiteBlock extends Block {
         // Capture the next hop before this bundle is removed by the blast.
         var next = WireSavedData.get(level).adjacentDynamite(level, pos);
         WireNetworking.broadcastIgnition(level, pos);
+        level.destroyBlock(pos, false);
         level.explode(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
                 4.0F, Level.ExplosionInteraction.BLOCK);
         for (BlockPos dynamite : next) ignite(level, dynamite);
