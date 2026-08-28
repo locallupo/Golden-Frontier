@@ -1,8 +1,11 @@
 package net.locallupo.goldenfrontier.client;
 
-import com.mojang.blaze3d.GpuFormat;
+import com.mojang.blaze3d.PrimitiveTopology;
+import com.mojang.blaze3d.pipeline.BlendFunction;
 import com.mojang.blaze3d.pipeline.ColorTargetState;
+import com.mojang.blaze3d.pipeline.DepthStencilState;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
@@ -10,11 +13,11 @@ import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.wire.WireConnection;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.HashSet;
@@ -24,10 +27,18 @@ import java.util.Set;
 
 public final class WireClientRenderer {
     private static final RenderType WIRE_RENDER_TYPE = RenderType.create("golden_frontier_wire",
-            RenderSetup.builder(RenderPipelines.register(RenderPipeline.builder(RenderPipelines.DEBUG_FILLED_SNIPPET)
-                            .withLocation(Identifier.fromNamespaceAndPath("golden-frontier", "pipeline/wire"))
-                            .withColorTargetState(new ColorTargetState(Optional.empty(), GpuFormat.RGBA8_UNORM, 15))
+            RenderSetup.builder(RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
+                            .withLocation("pipeline/wire")
+                            .withVertexShader("core/rendertype_leash")
+                            .withFragmentShader("core/rendertype_leash")
+                            .withBindGroupLayout(BindGroupLayouts.SAMPLER2)
+                            .withVertexBinding(0, DefaultVertexFormat.POSITION_COLOR_LIGHTMAP)
+                            .withPrimitiveTopology(PrimitiveTopology.QUADS)
+                            .withColorTargetState(new ColorTargetState(BlendFunction.TRANSLUCENT))
+                            .withDepthStencilState(DepthStencilState.DEFAULT)
+                            .withCull(false)
                             .build()))
+                    .useLightmap()
                     .createRenderSetup());
     private static final WireRouteService ROUTES = new WireRouteService();
 
