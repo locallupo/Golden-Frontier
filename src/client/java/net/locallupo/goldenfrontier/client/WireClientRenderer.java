@@ -1,11 +1,5 @@
 package net.locallupo.goldenfrontier.client;
 
-import com.mojang.blaze3d.PrimitiveTopology;
-import com.mojang.blaze3d.pipeline.BlendFunction;
-import com.mojang.blaze3d.pipeline.ColorTargetState;
-import com.mojang.blaze3d.pipeline.DepthStencilState;
-import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
@@ -13,9 +7,7 @@ import net.locallupo.goldenfrontier.blocks.ModBlocks;
 import net.locallupo.goldenfrontier.wire.WireConnection;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BindGroupLayouts;
-import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.rendertype.RenderSetup;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
@@ -26,20 +18,9 @@ import java.util.Optional;
 import java.util.Set;
 
 public final class WireClientRenderer {
-    private static final RenderType WIRE_RENDER_TYPE = RenderType.create("golden_frontier_wire",
-            RenderSetup.builder(RenderPipelines.register(RenderPipeline.builder(RenderPipelines.MATRICES_FOG_SNIPPET)
-                            .withLocation("pipeline/wire")
-                            .withVertexShader("core/rendertype_leash")
-                            .withFragmentShader("core/rendertype_leash")
-                            .withBindGroupLayout(BindGroupLayouts.SAMPLER2)
-                            .withVertexBinding(0, DefaultVertexFormat.POSITION_COLOR_LIGHTMAP)
-                            .withPrimitiveTopology(PrimitiveTopology.QUADS)
-                            .withColorTargetState(new ColorTargetState(BlendFunction.TRANSLUCENT))
-                            .withDepthStencilState(DepthStencilState.DEFAULT)
-                            .withCull(false)
-                            .build()))
-                    .useLightmap()
-                    .createRenderSetup());
+    // Reuse Minecraft's built-in leash pipeline. Iris maps this exact pipeline
+    // object to its LEASH shader key; custom pipelines are not shader-pack safe.
+    private static final RenderType WIRE_RENDER_TYPE = RenderTypes.leash();
     private static final WireRouteService ROUTES = new WireRouteService();
 
     private WireClientRenderer() {}

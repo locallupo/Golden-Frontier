@@ -35,14 +35,24 @@ final class WireTubeRenderer {
         if (points.size() < 2) return;
         List<TubeFrame> frames = new ArrayList<>(points.size());
         for (int i = 0; i < points.size(); i++) frames.add(frame(points, i, radius));
-        for (int segment = 0; segment < points.size() - 1; segment++) {
-            for (int side = 0; side < SIDES; side++) {
-                double first = side * Math.PI * 2.0 / SIDES;
-                double second = (side + 1) * Math.PI * 2.0 / SIDES;
-                vertex(consumer, matrix, level, points.get(segment), frames.get(segment), first, red, green, blue);
-                vertex(consumer, matrix, level, points.get(segment), frames.get(segment), second, red, green, blue);
-                vertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), second, red, green, blue);
-                vertex(consumer, matrix, level, points.get(segment + 1), frames.get(segment + 1), first, red, green, blue);
+        // RenderTypes.leash() uses a triangle strip. Keep each circumferential
+        // side as one continuous strip; restarting at every segment creates
+        // visible holes when the strip is consumed by shader packs.
+        for (int side = 0; side < SIDES; side++) {
+            double first = side * Math.PI * 2.0 / SIDES;
+            double second = (side + 1) * Math.PI * 2.0 / SIDES;
+            if (side != 0) {
+                Vec3 previous = points.getLast();
+                TubeFrame previousFrame = frames.getLast();
+                // Duplicate the actual last vertex of the previous strip.
+                // Using this side's second angle creates a diagonal bridge.
+                vertex(consumer, matrix, level, previous, previousFrame, first, red, green, blue);
+                vertex(consumer, matrix, level, points.getFirst(), frames.getFirst(), first, red, green, blue);
+                vertex(consumer, matrix, level, points.getFirst(), frames.getFirst(), first, red, green, blue);
+            }
+            for (int point = 0; point < points.size(); point++) {
+                vertex(consumer, matrix, level, points.get(point), frames.get(point), first, red, green, blue);
+                vertex(consumer, matrix, level, points.get(point), frames.get(point), second, red, green, blue);
             }
         }
     }
