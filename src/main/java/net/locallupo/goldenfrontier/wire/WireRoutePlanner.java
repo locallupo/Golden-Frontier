@@ -13,17 +13,13 @@ import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-/**
- * Deterministic, gravity-aware wire routing.  This class deliberately knows
- * nothing about a client level, so the routing rules can be unit tested.
- */
+/** Finds a route over the available support surfaces. */
 public final class WireRoutePlanner {
     public static final double CLEARANCE = 0.08;
     private static final double LEDGE_FACE_CLEARANCE = 0.025;
     public static final int MAX_UNSUPPORTED_BRIDGE = 2;
     private static final int MAX_EXPANDED_NODES = 50_000;
-    // Start beyond the former 16-block ceiling so the first successful route is
-    // already allowed to choose a meaningful detour, then grow on demand.
+    // Grow the search area if the direct area is not enough.
     private static final int[] GROWTH_STEPS = {32, 64, 128, 256, 512, 1024};
     private static final int[][] DIRECTIONS = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
@@ -69,11 +65,6 @@ public final class WireRoutePlanner {
                     addPoint(route, point);
                 }
                 addPoint(route, end);
-                // Every non-attachment segment was collision-checked while it was
-                // expanded.  Rechecking this flattened list would incorrectly test
-                // the direct start-surface -> goal-surface transition when the
-                // endpoints are adjacent; that transition is an attachment edge at
-                // both ends and may legitimately intersect either endpoint shape.
                 return new RouteResult(List.copyOf(route), "route found (margin=" + margin
                         + ", startSurfaces=" + starts.size() + ", endSurfaces=" + goals.size() + ")");
             }
@@ -95,9 +86,7 @@ public final class WireRoutePlanner {
 
     private static List<Surface> reachableEndpointSurfaces(Terrain terrain, BlockPos endpoint, Vec3 point,
                                                              BlockPos first, BlockPos second) {
-        // A column can contain several cave floors. Only the surface directly
-        // associated with an endpoint is a valid zero-cost start/goal; all
-        // other heights must be reached through normal, costed transitions.
+        // Use the surface closest to the endpoint when there are multiple floors.
         return terrain.surfacesAt(endpoint.getX(), endpoint.getZ(), first, second).stream()
                 .min(Comparator.comparingDouble(surface -> Math.abs(surface.position().y - point.y)))
                 .stream().toList();
@@ -147,7 +136,7 @@ public final class WireRoutePlanner {
                         if (!relax(terrain, current, next, queued.node(), startNodes, goalNodes, surfaces, scores, previous, open, goals, first, second)) collisionRejected++;
                     }
                 }
-                // A wire may cross a small unsupported hole, but never free-span farther.
+                // Allow short gaps, but do not let a wire span a large hole.
                 for (int span = 2; span <= MAX_UNSUPPORTED_BRIDGE + 1; span++) {
                     int bridgeX = queued.node().x + direction[0] * span;
                     int bridgeZ = queued.node().z + direction[1] * span;
@@ -208,13 +197,9 @@ public final class WireRoutePlanner {
 
     private static List<Vec3> transition(Vec3 start, Vec3 end) {
         if (Math.abs(start.y - end.y) < 0.05) return List.of(end);
-        // Changes in height happen on the shared edge between two columns,
-        // rather than after moving to the centre of the next block. This
-        // makes a wire drop from a ledge, or climb a step, where a player
-        // would expect it to in Minecraft.
+        // Put vertical moves on the edge between the two support blocks.
         Vec3 horizontal = new Vec3(end.x - start.x, 0.0, end.z - start.z).normalize();
-        // Put the vertical leg just inside the lower column's open side of the
-        // ledge. Rendering exactly on the shared block face causes z-fighting.
+        // Move slightly off the face to avoid z-fighting.
         Vec3 lowerSide = end.y < start.y ? horizontal : horizontal.scale(-1.0);
         Vec3 edgeAtStartHeight = new Vec3((start.x + end.x) * 0.5 + lowerSide.x * LEDGE_FACE_CLEARANCE,
                 start.y, (start.z + end.z) * 0.5 + lowerSide.z * LEDGE_FACE_CLEARANCE);

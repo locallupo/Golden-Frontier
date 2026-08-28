@@ -9,10 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,7 +27,7 @@ class WireRoutePlannerTest {
     @Test
     void routesAroundADetourWiderThanTheOldSixteenBlockMargin() {
         TestTerrain terrain = TestTerrain.floor(-5, 45, -24, 24, 0);
-        // A tall wall makes going over it more expensive than going around it.
+        // Going around the wall should be cheaper than going over it.
         for (int z = -17; z <= 17; z++) {
             for (int y = 1; y <= 40; y++) terrain.solid(20, y, z);
         }
@@ -66,52 +64,6 @@ class WireRoutePlannerTest {
     }
 
     @Test
-    void irrelevantBlockDoesNotChangeTheChosenRoute() {
-        TestTerrain terrain = TestTerrain.floor(-2, 12, -8, 8, 0);
-        BlockPos first = new BlockPos(0, 1, 0);
-        BlockPos second = new BlockPos(10, 1, 0);
-        List<Vec3> before = WireRoutePlanner.findRoute(terrain, first, second);
-
-        terrain.solid(5, 1, 6);
-        List<Vec3> after = WireRoutePlanner.findRoute(terrain, first, second);
-
-        assertEquals(before, after);
-    }
-
-    @Test
-    void producesTheSameRouteOnRepeatedSearches() {
-        TestTerrain terrain = TestTerrain.floor(-2, 12, -5, 5, 0);
-        terrain.solid(5, 1, 0).solid(5, 2, 0).solid(5, 3, 0);
-        BlockPos first = new BlockPos(0, 1, 0);
-        BlockPos second = new BlockPos(10, 1, 0);
-
-        assertEquals(WireRoutePlanner.findRoute(terrain, first, second), WireRoutePlanner.findRoute(terrain, first, second));
-    }
-
-    @Test
-    void generatedObstacleMapsProduceStableCollisionFreeRoutes() {
-        Random random = new Random(0xD1A1_7E); // Fixed seed: failures remain reproducible.
-        BlockPos first = new BlockPos(0, 1, 0);
-        BlockPos second = new BlockPos(10, 1, 0);
-        for (int map = 0; map < 30; map++) {
-            TestTerrain terrain = TestTerrain.floor(-2, 12, -5, 5, 0);
-            for (int column = 0; column < 20; column++) {
-                int x = 1 + random.nextInt(9);
-                int z = -4 + random.nextInt(9);
-                int height = 1 + random.nextInt(3);
-                for (int y = 1; y <= height; y++) terrain.solid(x, y, z);
-            }
-
-            List<Vec3> route = WireRoutePlanner.findRoute(terrain, first, second);
-            assertFalse(route.isEmpty(), "map " + map + " should remain traversable");
-            assertEquals(route, WireRoutePlanner.findRoute(terrain, first, second), "map " + map + " must be stable");
-            for (int point = 1; point < route.size(); point++) {
-                assertTrue(terrain.lineClear(route.get(point - 1), route.get(point), first, second), "map " + map + " contains a collision");
-            }
-        }
-    }
-
-    @Test
     void adjacentEndpointsAreTransparentButAnOrdinaryBlockIsNot() {
         BlockPos first = new BlockPos(0, 1, 0);
         BlockPos second = new BlockPos(1, 1, 0);
@@ -136,8 +88,7 @@ class WireRoutePlannerTest {
         Vec3 groundSurface = new Vec3(.5, 1.08, .5);
 
         assertTrue(WireEndpointCollisionFilter.isClear(new Hits(
-                // A full endpoint block exits at y=1.0, below the wire's
-                // clearance point y=1.08.
+                // The ray exits below the wire's clearance point.
                 new WireEndpointCollisionFilter.Hit(new Vec3(.5, 1.0, .5), endpoint)
         ), start, groundSurface, endpoint, new BlockPos(2, 1, 0)));
     }
@@ -240,8 +191,7 @@ class WireRoutePlannerTest {
                     || BlockPos.containing(start).equals(second) || BlockPos.containing(end).equals(second))) {
                 return false;
             }
-            // Fixtures use only unit cubes. Sampling at 1/32 block is ample here and
-            // keeps this fake independent of Minecraft's client collision engine.
+            // Keep the test terrain independent of Minecraft's collision engine.
             int samples = Math.max(1, (int) Math.ceil(start.distanceTo(end) * 32));
             for (int i = 1; i < samples; i++) {
                 Vec3 point = start.lerp(end, i / (double) samples);

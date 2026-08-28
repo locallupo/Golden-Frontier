@@ -35,9 +35,7 @@ public final class WireEndpointCollisionFilter {
                 return false;
             }
             cursor = movePastBlock(hit.get().location(), direction, hit.get().block());
-            // The endpoint collision shape can extend past the requested
-            // surface point. Once we have moved beyond the segment end, the
-            // remaining ray would point backwards into the ground.
+            // The collision shape can extend past the surface point.
             if (end.subtract(cursor).dot(direction) <= 0.0) {
                 return true;
             }
