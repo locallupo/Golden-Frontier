@@ -17,8 +17,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public final class DynamiteBlock extends Block {
     public static final MapCodec<DynamiteBlock> CODEC = simpleCodec(DynamiteBlock::new);
     private static final VoxelShape SHAPE = Shapes.or(
-            Block.box(4.5, 0.0, 4.5, 11.5, 10.0, 11.5),
-            Block.box(7.0, 10.0, 7.0, 9.0, 16.0, 9.0)
+            Block.box(4.5, 0.0, 4.5, 11.5, 10.0, 11.5)
     );
 
     public DynamiteBlock(Properties properties) {
