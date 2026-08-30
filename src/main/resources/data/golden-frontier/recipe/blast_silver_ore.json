@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "silver_ingot",
+  "ingredient": "golden-frontier:silver_ore",
+  "result": { "id": "golden-frontier:silver_ingot"},
+  "experience": 0.7
+}

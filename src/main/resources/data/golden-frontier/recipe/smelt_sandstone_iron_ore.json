@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "group": "iron_ingot",
+  "ingredient": "golden-frontier:sandstone_iron_ore",
+  "result": { "id": "minecraft:iron_ingot"},
+  "experience": 0.7
+}
