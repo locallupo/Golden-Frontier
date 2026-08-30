@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "silver_nugget",
+  "key": {
+    "#": "golden-frontier:silver_flake"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "id": "golden-frontier:silver_nugget"
+  }
+}

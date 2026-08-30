@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "quartz",
   "ingredients": [
     "golden-frontier:quartz_shard",
     "golden-frontier:quartz_shard",

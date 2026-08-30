@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "group": "gold_flake",
+  "ingredient": "golden-frontier:gold_dust",
+  "result": { "id": "golden-frontier:gold_flake" },
+  "experience": 0.7,
+  "cookingtime": 100
+}

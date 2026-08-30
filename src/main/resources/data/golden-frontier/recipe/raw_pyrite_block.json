@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "raw_pyrite_block",
   "key": {
     "#": "golden-frontier:raw_pyrite"
   },

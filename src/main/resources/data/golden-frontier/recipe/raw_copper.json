@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "raw_copper",
   "ingredients": [
     "golden-frontier:copper_chunk",
     "golden-frontier:copper_chunk"

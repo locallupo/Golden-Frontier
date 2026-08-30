@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_quartz": {
+      "conditions": {
+        "items": [
+          {
+            "items": "golden-frontier:quartz_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+      "has_quartz"
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:quartz"
+    ]
+  }
+}

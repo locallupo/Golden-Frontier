@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "raw_silver_block",
   "key": {
     "#": "golden-frontier:raw_silver"
   },

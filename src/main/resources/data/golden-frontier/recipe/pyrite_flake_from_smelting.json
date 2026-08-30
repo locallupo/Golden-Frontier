@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "group": "pyrite_flake",
+  "ingredient": "golden-frontier:pyrite_dust",
+  "result": { "id": "golden-frontier:pyrite_flake" },
+  "experience": 0.7,
+  "cookingtime": 100
+}

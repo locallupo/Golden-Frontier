@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "gambler_hat",
   "ingredients": [
     "#golden-frontier:gambler_hats_not_magenta",
     "minecraft:magenta_dye"

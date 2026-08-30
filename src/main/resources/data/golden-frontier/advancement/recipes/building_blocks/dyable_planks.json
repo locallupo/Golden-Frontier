@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+      "has_planks"
+  ],
+  "rewards": {
+    "recipes": [
+      [
+        "golden-frontier:dyed_plank",
+        "golden-frontier:dyed_planks_bulk"
+      ]
+    ]
+  }
+}

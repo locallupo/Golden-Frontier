@@ -1,8 +1,8 @@
 {
   "type": "minecraft:smelting",
   "category": "misc",
+  "group": "pyrite_ingot",
   "ingredient": "golden-frontier:raw_pyrite",
-  "result": { "id": "golden-frontier:pyrite_ingot", "count": 1 },
-  "experience": 0.7,
-  "cookingtime": 200
+  "result": { "id": "golden-frontier:pyrite_ingot"},
+  "experience": 0.7
 }

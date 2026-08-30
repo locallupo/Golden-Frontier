@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "pocket_watch",
   "key": {
     "S": "golden-frontier:silver_ingot",
     "R": "minecraft:redstone",

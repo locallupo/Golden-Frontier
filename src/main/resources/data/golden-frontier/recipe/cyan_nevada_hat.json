@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "nevada_hat",
   "ingredients": [
     "#golden-frontier:nevada_hats_not_cyan",
     "minecraft:cyan_dye"

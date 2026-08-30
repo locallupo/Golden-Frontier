@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "cattleman_hat",
   "ingredients": [
     "#golden-frontier:dyed_cattleman_hats",
     "minecraft:water_bucket"

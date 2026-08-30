@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "nevada_hat",
   "key": {
     "L": "minecraft:leather",
     "S": "minecraft:string",

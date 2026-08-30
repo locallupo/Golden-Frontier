@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wire",
   "key": {
     "C": "minecraft:copper_nugget",
     "S": "minecraft:string",

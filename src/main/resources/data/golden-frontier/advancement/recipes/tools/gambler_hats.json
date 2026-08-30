@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gambler": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#golden-frontier:gambler_hats"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+        "has_gambler"
+  ],
+  "rewards": {
+    "recipes": [
+      [
+        "golden-frontier:gambler_hat",
+        "golden-frontier:red_gambler_hat",
+        "golden-frontier:orange_gambler_hat",
+        "golden-frontier:yellow_gambler_hat",
+        "golden-frontier:green_gambler_hat",
+        "golden-frontier:cyan_gambler_hat",
+        "golden-frontier:magenta_gambler_hat",
+        "golden-frontier:purple_gambler_hat",
+        "golden-frontier:black_gambler_hat",
+        "golden-frontier:white_gambler_hat",
+        "golden-frontier:wash_dyed_gambler_hat"
+      ]
+    ]
+  }
+}

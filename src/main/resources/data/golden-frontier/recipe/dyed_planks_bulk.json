@@ -1,4 +1,6 @@
 {
   "type": "golden-frontier:dyed_plank",
+  "category": "building",
+  "group": "painted_plank",
   "surrounded": true
 }

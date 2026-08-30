@@ -16,7 +16,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:copper_nugget",
+          "name": "minecraft:copper_nugget",
           "weight": 45
         },
         {
@@ -58,7 +58,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:iron_nugget",
+          "name": "minecraft:iron_nugget",
           "weight": 20
         },
         {
@@ -106,7 +106,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "golden-frontier:gold_nugget",
+          "name": "minecraft:gold_nugget",
           "weight": 5
         },
         {

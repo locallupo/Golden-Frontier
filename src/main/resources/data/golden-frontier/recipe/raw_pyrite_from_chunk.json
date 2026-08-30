@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "raw_pyrite",
   "ingredients": [
     "golden-frontier:pyrite_chunk",
     "golden-frontier:pyrite_chunk"

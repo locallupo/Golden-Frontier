@@ -1,5 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "cattleman_hat",
   "ingredients": [
     "#golden-frontier:cattleman_hats_not_yellow",
     "minecraft:yellow_dye"

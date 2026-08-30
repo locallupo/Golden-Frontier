@@ -1,12 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "dynamite",
   "key": {
-    "G": "minecraft:leather",
-    "S": "minecraft:string",
-    "C": "minecraft:copper"
+    "G": "minecraft:gunpowder",
+    "W": "golden-frontier:wire",
+    "C": "minecraft:copper_ingot"
   },
   "pattern": [
-    " S",
+    " W ",
     "GCG",
     "GCG"
   ],

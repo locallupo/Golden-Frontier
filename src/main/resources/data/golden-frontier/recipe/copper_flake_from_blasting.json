@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "group": "copper_flake",
+  "ingredient": "golden-frontier:copper_dust",
+  "result": { "id": "golden-frontier:copper_flake" },
+  "experience": 0.7,
+  "cookingtime": 50
+}
