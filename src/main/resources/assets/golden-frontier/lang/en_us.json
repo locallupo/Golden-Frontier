@@ -1,6 +1,15 @@
 {
   "itemGroup.golden_frontier": "Golden Frontier",
 
+  "advancements.golden_frontier.root.description": "Obtain a Gold Pan",
+  "advancements.golden_frontier.root.title": "Golden Frontier",
+
+  "advancements.golden_frontier.gold_chunk.description": "Obtain a Gold Chunk",
+  "advancements.golden_frontier.gold_chunk.title": "Strike Gold",
+
+  "advancements.golden_frontier.handle_with_care.description": "Obtain Dynamite or a Detonator for Mining",
+  "advancements.golden_frontier.handle_with_care.title": "Handle With Care",
+
 
   "item.golden-frontier.copper_chunk": "Copper Chunk",
   "item.golden-frontier.copper_dust": "Copper Dust",

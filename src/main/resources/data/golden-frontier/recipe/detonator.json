@@ -6,7 +6,7 @@
     "#": "minecraft:stick",
     "@": "minecraft:copper_ingot",
     "$": "minecraft:redstone",
-    "&": "minecraft:stripped_spruce_log",
+    "&": "#golden-frontier:stripped_logs",
     "*": "minecraft:iron_ingot"
   },
   "pattern": [

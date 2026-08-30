@@ -13,11 +13,12 @@
     }
   },
   "requirements": [
+    [
       "has_nevada"
+    ]
   ],
   "rewards": {
     "recipes": [
-      [
         "golden-frontier:nevada_hat",
         "golden-frontier:red_nevada_hat",
         "golden-frontier:orange_nevada_hat",
@@ -29,7 +30,6 @@
         "golden-frontier:black_nevada_hat",
         "golden-frontier:white_nevada_hat",
         "golden-frontier:wash_dyed_nevada_hat"
-      ]
     ]
   }
 }

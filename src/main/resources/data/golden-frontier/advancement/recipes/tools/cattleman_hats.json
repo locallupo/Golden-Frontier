@@ -13,11 +13,12 @@
     }
   },
   "requirements": [
-        "has_cattleman"
+    [
+      "has_cattleman"
+    ]
   ],
   "rewards": {
     "recipes": [
-      [
         "golden-frontier:cattleman_hat",
         "golden-frontier:red_cattleman_hat",
         "golden-frontier:orange_cattleman_hat",
@@ -29,7 +30,6 @@
         "golden-frontier:black_cattleman_hat",
         "golden-frontier:white_cattleman_hat",
         "golden-frontier:wash_dyed_cattleman_hat"
-      ]
     ]
   }
 }

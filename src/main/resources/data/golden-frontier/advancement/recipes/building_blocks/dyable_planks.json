@@ -13,14 +13,14 @@
     }
   },
   "requirements": [
-      "has_planks"
+      [
+        "has_planks"
+      ]
   ],
   "rewards": {
     "recipes": [
-      [
-        "golden-frontier:dyed_plank",
-        "golden-frontier:dyed_planks_bulk"
-      ]
+      "golden-frontier:dyed_plank",
+      "golden-frontier:dyed_planks_bulk"
     ]
   }
 }

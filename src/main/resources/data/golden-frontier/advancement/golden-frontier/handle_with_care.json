@@ -1,0 +1,46 @@
+{
+  "parent": "golden-frontier:golden-frontier/root",
+  "display": {
+    "icon": {
+      "id": "golden-frontier:dynamite"
+    },
+    "title": {
+      "translate": "advancements.golden_frontier.handle_with_care.title"
+    },
+    "description": {
+      "translate": "advancements.golden_frontier.handle_with_care.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dynamite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "golden-frontier:dynamite"
+          }
+        ]
+      }
+    },
+    "detonator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "golden-frontier:detonator"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dynamite",
+      "detonator"
+    ]
+  ]
+}

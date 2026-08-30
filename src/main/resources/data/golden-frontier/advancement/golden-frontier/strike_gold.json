@@ -1,13 +1,14 @@
 {
+  "parent": "golden-frontier:golden-frontier/root",
   "display": {
     "icon": {
       "id": "golden-frontier:gold_chunk"
     },
     "title": {
-      "text": "Strike Gold"
+      "translate": "advancements.golden_frontier.gold_chunk.title"
     },
     "description": {
-      "text": "Obtain a gold chunk"
+      "translate": "advancements.golden_frontier.gold_chunk.description"
     },
     "frame": "task",
     "show_toast": true,

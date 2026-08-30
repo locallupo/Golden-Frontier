@@ -41,11 +41,9 @@
   ],
   "rewards": {
     "recipes": [
-      [
         "golden-frontier:cattleman_hat",
         "golden-frontier:gambler_hat",
         "golden-frontier:nevada_hat"
-      ]
     ]
   }
 }
