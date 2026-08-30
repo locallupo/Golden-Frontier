@@ -1,0 +1,7 @@
+{
+  "gives": { "id": "minecraft:emerald" },
+  "max_uses": 16.0,
+  "reputation_discount": 0.05,
+  "wants": { "count": 4.0, "id": "golden-frontier:silver_flake" },
+  "xp": 2.0
+}

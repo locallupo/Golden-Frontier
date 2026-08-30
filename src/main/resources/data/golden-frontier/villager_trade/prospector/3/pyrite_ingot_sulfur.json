@@ -1,0 +1,7 @@
+{
+  "gives": { "id": "minecraft:sulfur" },
+  "max_uses": 16.0,
+  "reputation_discount": 0.05,
+  "wants": { "count": 1.0, "id": "golden-frontier:pyrite_ingot" },
+  "xp": 2.0
+}

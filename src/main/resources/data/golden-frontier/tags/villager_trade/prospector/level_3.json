@@ -1,6 +1,9 @@
 {
   "values": [
     "golden-frontier:prospector/3/pyrite_ingot_iron_ingot",
-    "golden-frontier:prospector/3/raw_silver_emerald"
+    "golden-frontier:prospector/3/raw_silver_emerald",
+    "golden-frontier:prospector/3/pyrite_ingot_sulfur",
+    "golden-frontier:prospector/3/emerald_wire"
+
   ]
 }
