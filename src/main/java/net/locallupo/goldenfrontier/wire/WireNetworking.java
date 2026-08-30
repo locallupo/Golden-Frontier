@@ -14,18 +14,19 @@ import net.locallupo.goldenfrontier.items.WireItem;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public final class WireNetworking {
     private static final Map<UUID, ResourceKey<Level>> PLAYER_DIMENSIONS = new HashMap<>();
+    private static final Map<ResourceKey<Level>, Long> REVISIONS = new HashMap<>();
 
     private WireNetworking() {
     }
 
     public static void initialize() {
-        PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Connections.TYPE, WirePayloads.Connections.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(WirePayloads.WireState.TYPE, WirePayloads.WireState.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Selection.TYPE, WirePayloads.Selection.CODEC);
-        PayloadTypeRegistry.clientboundPlay().register(WirePayloads.Ignition.TYPE, WirePayloads.Ignition.CODEC);
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> syncPlayer(handler.getPlayer()));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
@@ -39,11 +40,11 @@ public final class WireNetworking {
 
     public static void syncPlayer(ServerPlayer player) {
         ServerLevel level = (ServerLevel) player.level();
-        ServerPlayNetworking.send(player, new WirePayloads.Connections(WireSavedData.get(level).connections()));
+        ServerPlayNetworking.send(player, state(level, Optional.empty(), false));
     }
 
     public static void broadcast(ServerLevel level) {
-        WirePayloads.Connections payload = new WirePayloads.Connections(WireSavedData.get(level).connections());
+        WirePayloads.WireState payload = state(level, Optional.empty(), true);
         for (ServerPlayer player : PlayerLookup.level(level)) {
             ServerPlayNetworking.send(player, payload);
         }
@@ -54,11 +55,25 @@ public final class WireNetworking {
     }
 
     public static void broadcastIgnition(ServerLevel level, net.minecraft.core.BlockPos detonator) {
-        WirePayloads.Ignition payload = new WirePayloads.Ignition(detonator.immutable(),
-                WireSavedData.get(level).connectionsAt(detonator));
+        broadcastIgnition(level, detonator, WireSavedData.get(level).connectionsAt(detonator));
+    }
+
+    public static void broadcastIgnition(ServerLevel level, net.minecraft.core.BlockPos detonator,
+                                         java.util.List<WireConnection> ignitionConnections) {
+        WirePayloads.WireState payload = state(level,
+                Optional.of(new WirePayloads.Ignition(detonator.immutable(), ignitionConnections)), true);
         for (ServerPlayer player : PlayerLookup.level(level)) {
             ServerPlayNetworking.send(player, payload);
         }
+    }
+
+    private static WirePayloads.WireState state(ServerLevel level, Optional<WirePayloads.Ignition> ignition,
+                                                boolean advanceRevision) {
+        ResourceKey<Level> dimension = level.dimension();
+        long revision = advanceRevision
+                ? REVISIONS.merge(dimension, 1L, Long::sum)
+                : REVISIONS.getOrDefault(dimension, 0L);
+        return new WirePayloads.WireState(revision, WireSavedData.get(level).connections(), ignition);
     }
 
     private static void tickLevel(ServerLevel level) {

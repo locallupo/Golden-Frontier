@@ -41,12 +41,14 @@ public final class DynamiteBlock extends Block {
     }
 
     private void explodeAndPropagate(ServerLevel level, BlockPos pos) {
-        // Capture the next hop before this bundle is removed by the blast.
-        var next = WireSavedData.get(level).adjacentDynamite(level, pos);
-        WireNetworking.broadcastIgnition(level, pos);
+        WireSavedData data = WireSavedData.get(level);
+        var next = data.adjacentDynamite(level, pos);
+        var ignitionConnections = data.connectionsToward(pos, next);
         level.destroyBlock(pos, false);
         level.explode(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
                 4.0F, Level.ExplosionInteraction.BLOCK);
+        data.pruneInvalid(level);
+        WireNetworking.broadcastIgnition(level, pos, ignitionConnections);
         for (BlockPos dynamite : next) ignite(level, dynamite);
     }
 

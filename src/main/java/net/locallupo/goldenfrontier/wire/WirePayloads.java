@@ -16,20 +16,45 @@ public final class WirePayloads {
     private WirePayloads() {
     }
 
-    public record Connections(List<WireConnection> connections) implements CustomPacketPayload {
-        public static final Type<Connections> TYPE = new Type<>(
-                Identifier.fromNamespaceAndPath(GoldenFrontier.MOD_ID, "wire_connections")
+    public record WireState(long revision, List<WireConnection> connections, Optional<Ignition> ignition)
+            implements CustomPacketPayload {
+        public static final Type<WireState> TYPE = new Type<>(
+                Identifier.fromNamespaceAndPath(GoldenFrontier.MOD_ID, "wire_state")
         );
 
-        public static final StreamCodec<RegistryFriendlyByteBuf, Connections> CODEC = StreamCodec.composite(
+        public static final StreamCodec<RegistryFriendlyByteBuf, WireState> CODEC = StreamCodec.composite(
+                ByteBufCodecs.VAR_LONG, WireState::revision,
                 ByteBufCodecs.collection(ArrayList::new, WireConnection.STREAM_CODEC),
-                Connections::connections,
-                Connections::new
+                WireState::connections,
+                ByteBufCodecs.optional(Ignition.CODEC), WireState::ignition,
+                WireState::new
         );
+
+        public WireState {
+            connections = List.copyOf(connections);
+            ignition = ignition.map(Ignition::copy);
+        }
 
         @Override
         public Type<? extends CustomPacketPayload> type() {
             return TYPE;
+        }
+    }
+
+    public record Ignition(BlockPos detonator, List<WireConnection> connections) {
+        public static final StreamCodec<RegistryFriendlyByteBuf, Ignition> CODEC = StreamCodec.composite(
+                BlockPos.STREAM_CODEC, Ignition::detonator,
+                ByteBufCodecs.collection(ArrayList::new, WireConnection.STREAM_CODEC), Ignition::connections,
+                Ignition::new
+        );
+
+        public Ignition {
+            detonator = detonator.immutable();
+            connections = List.copyOf(connections);
+        }
+
+        private Ignition copy() {
+            return new Ignition(detonator, connections);
         }
     }
 
@@ -50,20 +75,4 @@ public final class WirePayloads {
         }
     }
 
-    public record Ignition(BlockPos detonator, List<WireConnection> connections) implements CustomPacketPayload {
-        public static final Type<Ignition> TYPE = new Type<>(
-                Identifier.fromNamespaceAndPath(GoldenFrontier.MOD_ID, "wire_ignition")
-        );
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, Ignition> CODEC = StreamCodec.composite(
-                BlockPos.STREAM_CODEC, Ignition::detonator,
-                ByteBufCodecs.collection(ArrayList::new, WireConnection.STREAM_CODEC), Ignition::connections,
-                Ignition::new
-        );
-
-        @Override
-        public Type<? extends CustomPacketPayload> type() {
-            return TYPE;
-        }
-    }
 }

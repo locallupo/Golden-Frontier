@@ -27,13 +27,17 @@ final class WireIgnitionAnimator {
 
         double elapsed = (nowNanos - ignition.get().startedAtNanos()) / 1_000_000_000.0;
         if (elapsed > MAX_IGNITION_SECONDS) {
-            // The server will send the next state if there is more to show.
-            WireClientState.clearIgnition();
-            return Optional.empty();
+            return Optional.of(new Progress(1.0, fromFirst, length(points)));
         }
         double length = length(points);
         double duration = Math.max(0.16, Math.min(0.42, length / 24.0));
         return Optional.of(new Progress(elapsed / duration, fromFirst, length));
+    }
+
+    static boolean expired(long nowNanos) {
+        return WireClientState.ignition().map(ignition ->
+                (nowNanos - ignition.startedAtNanos()) / 1_000_000_000.0 > MAX_IGNITION_SECONDS
+        ).orElse(false);
     }
 
     static List<Vec3> unburned(List<Vec3> points, Progress progress) {

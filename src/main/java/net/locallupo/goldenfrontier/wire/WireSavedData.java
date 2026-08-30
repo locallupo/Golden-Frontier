@@ -102,6 +102,16 @@ public class WireSavedData extends SavedData {
         return connections.stream().filter(connection -> connection.contains(source)).toList();
     }
 
+    public List<WireConnection> connectionsToward(BlockPos source, List<BlockPos> endpoints) {
+        return connections.stream()
+                .filter(connection -> {
+                    BlockPos other = connection.first().equals(source) ? connection.second()
+                            : connection.second().equals(source) ? connection.first() : null;
+                    return other != null && endpoints.contains(other);
+                })
+                .toList();
+    }
+
     public boolean pruneInvalid(ServerLevel level) {
         boolean changed = connections.removeIf(connection ->
                 !isEndpoint(level, connection.first()) || !isEndpoint(level, connection.second()));
