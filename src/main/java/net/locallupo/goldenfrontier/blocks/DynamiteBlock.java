@@ -42,18 +42,11 @@ public final class DynamiteBlock extends Block {
 
     private void explodeAndPropagate(ServerLevel level, BlockPos pos) {
         WireSavedData data = WireSavedData.get(level);
-        // Capture both lists before the explosion changes the endpoint states.
         var next = data.adjacentDynamite(level, pos);
-        // Only the next-hop segments are newly burning. The segment from the
-        // previous dynamite/detonator has already been consumed and must not
-        // be restarted by the next ignition event.
         var ignitionConnections = data.connectionsToward(pos, next);
         level.destroyBlock(pos, false);
         level.explode(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
                 4.0F, Level.ExplosionInteraction.BLOCK);
-        // Publish the ignition and the post-explosion wire snapshot together.
-        // This prevents the client from pairing the ignition animation with a
-        // stale connection list and briefly drawing the full route.
         data.pruneInvalid(level);
         WireNetworking.broadcastIgnition(level, pos, ignitionConnections);
         for (BlockPos dynamite : next) ignite(level, dynamite);

@@ -102,11 +102,6 @@ public class WireSavedData extends SavedData {
         return connections.stream().filter(connection -> connection.contains(source)).toList();
     }
 
-    /**
-     * Returns only the connections leaving {@code source} toward the supplied
-     * endpoints. This keeps a chained fuse from restarting the wire segment
-     * that carried the signal into the exploding dynamite.
-     */
     public List<WireConnection> connectionsToward(BlockPos source, List<BlockPos> endpoints) {
         return connections.stream()
                 .filter(connection -> {

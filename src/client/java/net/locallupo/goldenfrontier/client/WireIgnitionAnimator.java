@@ -27,9 +27,6 @@ final class WireIgnitionAnimator {
 
         double elapsed = (nowNanos - ignition.get().startedAtNanos()) / 1_000_000_000.0;
         if (elapsed > MAX_IGNITION_SECONDS) {
-            // Keep the shared ignition state intact until the renderer has
-            // processed every connection in the batch. Returning empty here
-            // would make the renderer draw the complete wire as a fallback.
             return Optional.of(new Progress(1.0, fromFirst, length(points)));
         }
         double length = length(points);
