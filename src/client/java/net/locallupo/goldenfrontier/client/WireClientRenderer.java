@@ -41,14 +41,25 @@ public final class WireClientRenderer {
 
         Set<WireConnection> rendered = new HashSet<>();
         for (WireConnection connection : WireClientState.connections()) {
-            if (isEndpoint(level, connection.first()) && isEndpoint(level, connection.second())) {
+            if (!WireClientState.isHidden(connection)
+                    && isEndpoint(level, connection.first()) && isEndpoint(level, connection.second())) {
                 renderConnection(context, poseStack, level, connection);
                 rendered.add(connection);
             }
         }
-        WireClientState.ignition().ifPresent(ignition -> ignition.connections().forEach(connection -> {
-            if (rendered.add(connection)) renderConnection(context, poseStack, level, connection);
-        }));
+        WireClientState.ignition().ifPresent(ignition -> {
+            ignition.connections().forEach(connection -> {
+                // An ignition event may describe the pre-explosion topology,
+                // but only the authoritative current snapshot may be drawn.
+                if (WireClientState.connections().contains(connection)
+                        && rendered.add(connection)) {
+                    renderConnection(context, poseStack, level, connection);
+                }
+            });
+            // Expire only after all connections saw the terminal progress, so
+            // no connection can fall back to rendering its full route mid-frame.
+            if (WireIgnitionAnimator.expired(System.nanoTime())) WireClientState.clearIgnition();
+        });
 
         WireClientState.selection().ifPresent(pos -> {
             if (isEndpoint(level, pos)) {
@@ -65,7 +76,15 @@ public final class WireClientRenderer {
         List<Vec3> points = ROUTES.route(level, connection);
         if (points.size() < 2) return;
 
+        Optional<WireClientState.Ignition> ignitionState = WireClientState.ignition();
+        boolean isIgnitionConnection = ignitionState.isPresent()
+                && ignitionState.get().connections().contains(connection);
         Optional<WireIgnitionAnimator.Progress> ignition = WireIgnitionAnimator.progress(connection, points);
+        // An ignition batch can contain connections on both sides of a
+        // detonator. Once the detonator advances, the old-side connections
+        // are no longer animatable; rendering them as a normal wire causes a
+        // brief full-wire flash.
+        if (isIgnitionConnection && ignition.isEmpty()) return;
         List<Vec3> visible = ignition.map(progress -> WireIgnitionAnimator.unburned(points, progress)).orElse(points);
         if (visible.size() >= 2) WireTubeRenderer.submit(context, poseStack, level, WIRE_RENDER_TYPE, visible);
 
