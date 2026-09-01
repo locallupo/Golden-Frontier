@@ -1,6 +1,12 @@
 ![Mod Banner](https://media.forgecdn.net/attachments/description/null/description_43158297-a69f-46e9-b613-3f8e3255e50b.png)
 
-[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/locallupo/Golden-Frontier) [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/kbyxn49Nfu) [![Twitch](https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white)](https://www.twitch.tv/local_lupo) [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@locallupo) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/danielpjacob) [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/c/danieljacob)
+![Fabric](https://img.shields.io/badge/fabric-26.2-brightgreen?logoColor=white) ![Mod Version](https://img.shields.io/badge/version-1.1.0-brightgreen?logoColor=white) ![Wiki State](https://img.shields.io/badge/wiki-incomplete-orange?logoColor=white)
+ [![Curseforge](https://img.shields.io/badge/curseforge-%23F16436?logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/golden-frontier) [![Modrinth](https://img.shields.io/badge/modrinth-%2300AF5C?logo=modrinth&logoColor=white)](https://modrinth.com/mod/golden-frontier)
+
+
+
+
+[![Gitub](https://img.shields.io/badge/github-black?logo=github&logoColor=white)](https://github.com/locallupo/Golden-Frontier) [![Discord](https://img.shields.io/badge/discord-%235865F2?logo=discord&logoColor=white)](https://discord.gg/kbyxn49Nfu) [![Twitch](https://img.shields.io/badge/twitch-%239146FF?logo=twitch&logoColor=white)](https://www.twitch.tv/local_lupo) [![YouTube](https://img.shields.io/badge/youtube-%23FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/@locallupo) [![Ko-Fi](https://img.shields.io/badge/ko--fi-%23FF6433?logo=ko-fi&logoColor=white)](https://ko-fi.com/danielpjacob) [![Patreon](https://img.shields.io/badge/patreon-orange?logo=patreon&logoColor=white)](https://www.patreon.com/c/danieljaco)
 
 ### **DISCLAIMER**
 
